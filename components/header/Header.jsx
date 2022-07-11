@@ -1,5 +1,8 @@
 import Image from "next/image";
 
+const myLoader = ({ src, width, quality }) => {
+  return `http://localhost:3000/logo`
+}
 export default function Header() {
   return (
     <nav className="relative container mx-auto p-6 font-yekan">
@@ -8,8 +11,9 @@ export default function Header() {
         <div className="pt-2">
           {/* <img src="/icon/logo.png" alt="" /> */}
           <Image
-            src="/icon/logo.png"
-            alt="Picture of the author"
+          loader={myLoader}
+            src="logo.png"
+            alt="سید علی دهقان - لوگو"
             width={50}
             height={38}
           />
