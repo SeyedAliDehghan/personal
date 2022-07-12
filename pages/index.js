@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Image from 'next/image'
+import Hero from '../components/Hero/Hero'
 import Header from '../components/header/Header'
 export default function Home() {
   return (
@@ -10,6 +10,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header/>
+      {/* hero section */}
+      <Hero/>
     </>
       
   )

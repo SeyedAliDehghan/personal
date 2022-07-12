@@ -1,9 +1,10 @@
 import Image from "next/image";
 
 const myLoader = ({ src, width, quality }) => {
-  return `http://localhost:3000/logo`
-}
-export default function Header() {
+  return `${src}`;
+};
+export default function Header({url}) {
+  const apiUrl = "https://iseyed-personal-api.herokuapp.com"+"/logo";
   return (
     <nav className="relative container mx-auto p-6 font-yekan">
       <div className="flex items-center justify-between">
@@ -11,8 +12,8 @@ export default function Header() {
         <div className="pt-2">
           {/* <img src="/icon/logo.png" alt="" /> */}
           <Image
-          loader={myLoader}
-            src="logo.png"
+            loader={myLoader}
+            src={apiUrl}
             alt="سید علی دهقان - لوگو"
             width={50}
             height={38}
