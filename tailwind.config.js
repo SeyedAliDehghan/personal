@@ -10,7 +10,7 @@ module.exports = {
         primaryColor:'#FDAA1E'
       },
       fontFamily:{
-        yekan:'yekanbakh'
+        primary:'ptsans'
       }
     },
   },
