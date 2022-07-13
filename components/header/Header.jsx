@@ -3,8 +3,8 @@ import Image from "next/image";
 const myLoader = ({ src, width, quality }) => {
   return `${src}`;
 };
-export default function Header({url}) {
-  const apiUrl = "https://iseyed-personal-api.herokuapp.com"+"/logo";
+export default function Header({baseUrl}) {
+  const logoUrl = baseUrl+"/logo";
   return (
     <nav className="relative container mx-auto p-6 font-yekan">
       <div className="flex items-center justify-between">
@@ -13,10 +13,10 @@ export default function Header({url}) {
           {/* <img src="/icon/logo.png" alt="" /> */}
           <Image
             loader={myLoader}
-            src={apiUrl}
+            src={logoUrl}
             alt="سید علی دهقان - لوگو"
             width={50}
-            height={38}
+            height={35}
           />
         </div>
         {/* menu items */}
