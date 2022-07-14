@@ -1,7 +1,5 @@
 import Image from "next/image";
 import illustration from '../../public/img/illustration.jpg'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 export default function Header({description,socials}) {
     // console.log(socials)
     return(
