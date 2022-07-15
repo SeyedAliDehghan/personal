@@ -1,10 +1,12 @@
 import Head from "next/head";
 import Hero from "../components/Hero/Hero";
-import Header from "../components/header/Header";
+import Header from "../components/Header/Header";
+import Projects from '../components/Projects/Projects'
 import { useSession } from "next-auth/react";
 import { signOut } from "next-auth/react"
 import { useRouter } from "next/router";
 import axios from "axios";
+
 
 function Home({ data }) {
   const { data: session } = useSession();
@@ -20,12 +22,14 @@ function Home({ data }) {
       
       <Header/>
       <Hero description={data.setting.description} socials={data.social}/>
+      <Projects projects={data.projects}/>
     </>
   );
 }
 
 export async function getStaticProps() {
   const res = await axios.get(process.env.URL+"/api")
+  console.log(res)
   // const res = await fetch("http://localhost:3000/api")
   // const data = await res.json()
   return {

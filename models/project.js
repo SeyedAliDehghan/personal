@@ -14,9 +14,16 @@ const projectSchema = new mongoose.Schema({
   projectFullDescription: {
     type: String,
   },
-  imgLink: {
+  previewimg: {
     type: String,
-    require: true,
+    required: true,
+  },
+  img:{
+    type: String,
+  },
+  slug:{
+    type: String,
+    required: true,
   },
   previewLink: {
     type: String,
@@ -33,6 +40,8 @@ const projectSchema = new mongoose.Schema({
       },
     },
   ],
+},{
+  timestamps:true
 });
 
 projectSchema.virtual("comments", {
@@ -91,6 +100,13 @@ projectSchema.methods.makeItPublick= function(req){
   }else(
     projectObject.isLiked=true
   )
+  const date = new Date(projectObject.createdAt);
+  projectObject.publicDate=date.getDate()+
+  "/"+(date.getMonth()+1)+
+  "/"+date.getFullYear()+
+  " "+date.getHours()+
+  ":"+date.getMinutes()+
+  ":"+date.getSeconds()
   return projectObject
 }
 

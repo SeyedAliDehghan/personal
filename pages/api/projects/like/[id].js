@@ -22,13 +22,15 @@ export default async function handler(req, res) {
             ip: req.ip,
           });
           await post.save();
-          return res.send({ message: "post liked" });
+          return res.send(post.makeItPublick(req) );
         }
         post.like = await post.like.filter((like) => {
           like.ip != req.ip;
         });
+        await post.populate("comments");
+
         await post.save();
-        return res.send({ message: "post unliked" });
+        return res.send(post.makeItPublick(req) );
       } catch (e) {
         res.status(400).send({ error: e.message });
       }

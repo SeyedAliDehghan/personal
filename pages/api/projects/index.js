@@ -1,12 +1,14 @@
 import dbConnect from "../../../util/mongoose";
 import Project from "../../../models/project";
+import slugify from "slugify";
 // import Project from '../../../models/project'
 
 export default async function handler(req, res) {
   const { method, cookies } = req;
   dbConnect();
   if (method === "POST") {
-    const project = new Project(req.body);
+    const slug=slugify(req.body.title,{lower: true})
+    const project = new Project({...req.body,slug});
     try {
       await project.save();
       res.status(201).send(project);
