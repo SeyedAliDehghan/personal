@@ -28,7 +28,7 @@ const adminSchema = new mongoose.Schema({
 
 
 adminSchema.statics.findByCredentials = async (email, password) => {
-  const admin = await Admin.findOne({ email });
+  const admin = await mongoose.models.Admin.findOne({ email });
   if (!admin) {
     throw new Error("mybe wrong email?!");
   }
@@ -64,7 +64,6 @@ adminSchema.pre("save", async function (next) {
   }
   next();
 });
-
 
 
 export default mongoose.models.Admin || mongoose.model("Admin", adminSchema);

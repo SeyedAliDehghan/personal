@@ -1,19 +1,15 @@
 import Image from "next/image";
+import logo from '../../public/img/logo.png'
 
-const myLoader = ({ src, width, quality }) => {
-  return `${src}`;
-};
-export default function Header({baseUrl}) {
-  const logoUrl = baseUrl+"/logo";
+export default function Header() {
+  // const logoUrl = "/img/"+logoName;
   return (
     <nav className="relative container mx-auto p-6  font-primary">
       <div className="flex items-center justify-between">
         {/* logo */}
         <div className="pt-2">
-          {/* <img src="/icon/logo.png" alt="" /> */}
           <Image
-            loader={myLoader}
-            src={logoUrl}
+            src={logo}
             alt="Seyed ali dehghan logo"
             width={50}
             height={35}
