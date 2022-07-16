@@ -13,7 +13,7 @@ export default async function handler(req, res) {
         }
         const admin = new Admin({
           name: "Seyed Ali Dehghan",
-          email: "alidehghan@gmail.com",
+          email: "admin@gmail.com",
           password: "pass123456",
         });
         const setting=new Setting({
