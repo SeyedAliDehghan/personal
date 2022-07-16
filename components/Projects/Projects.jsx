@@ -1,25 +1,53 @@
 import Image from "next/image";
 import axios from "axios";
-import React, { useState,useEffect } from 'react'
+import { faMessage } from "@fortawesome/free-regular-svg-icons";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
+export default function Header({ projects }) {
+  const [project, setProject] = useState(projects);
+  const router = useRouter();
+  // console.log(router.pathname);
 
-export default function Header( {projects} ) {
-  const [project,setProject]=useState(projects)
-  // console.log(project)
-  const likeHandler=async (projectId)=>{
-    try{
-      const res = await axios.get("/api/projects/like/"+projectId)
-      await setProject(project.map((pro)=>pro._id===projectId?({...pro,isLiked:res.data.isLiked}):pro))
-    }catch(e){
-      console.log(e)
-    }
-  }
+  // const likeHandler=async (projectId)=>{
+  //   try{
+  //     const res = await axios.get("/api/projects/like/"+projectId)
+  //     await setProject(project.map((pro)=>pro._id===projectId?({...pro,isLiked:res.data.isLiked,likeCount:res.data.likeCount}):pro))
+  //   }catch(e){
+  //     console.log(e)
+  //   }
+  // }
 
   return (
     <div className="container flex flex-col px-4 mx-auto mt-10 space-y-12 md:space-y-0">
-      <h2 className="text-4xl font-bold text-center md:text-left mb-5">
-        Projects
-      </h2>
+      {router.pathname === "/" && (
+        <Link href="/projects/">
+          <a>
+            <div className="flex justify-between">
+              <h2 className="text-4xl font-bold text-center md:text-left mb-5">
+                Projects
+              </h2>
+              <FontAwesomeIcon
+                icon={faAngleRight}
+                style={{ width: "15px", marginRight: "5px" }}
+              />
+            </div>
+          </a>
+        </Link>
+      )}
+      {router.pathname === "/projects" && (
+        <Link href="/projects/">
+          <a>
+              <h1 className="text-4xl font-bold text-center md:text-left mb-5">
+                Projects
+              </h1>
+          </a>
+        </Link>
+      )}
       <div className="flex flex-wrap">
         {project.map((project) => (
           <div className="p-4 w-full sm:w-1/2 lg:w-1/3" key={project._id}>
@@ -43,18 +71,20 @@ export default function Header( {projects} ) {
                   {project.description}
                 </div>
                 <div className="flex items-center flex-wrap ">
-                  <a href="#" className="text-primaryColor inline-flex items-center md:mb-2 lg:mb-0">
-                    Read More
-                  </a>
+                  <Link href={"/projects/" + project.slug}>
+                    <a className="text-primaryColor inline-flex items-center md:mb-2 lg:mb-0">
+                      Read More
+                    </a>
+                  </Link>
                   <div className="text-gray-400 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
-                    <span>C:</span>
-                    <span>{project.commentCount}</span>
+                    {/* <FontAwesomeIcon icon={faGithub} style={{width:"15px",marginRight:"5px"}}/> */}
                   </div>
-                  <div className="text-gray-400 inline-flex items-center leading-none text-sm" onClick={()=>likeHandler(project._id)}>
-                  <span>L:</span>
-                  {project.isLiked && <span> T</span>}
-                  {!project.isLiked && <span> F</span>}
-                    
+                  <div className="text-gray-400 inline-flex items-center leading-none text-sm">
+                    <FontAwesomeIcon
+                      icon={faMessage}
+                      style={{ width: "15px", marginRight: "5px" }}
+                    />
+                    <span>{project.commentCount}</span>
                   </div>
                 </div>
               </div>

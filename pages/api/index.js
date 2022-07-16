@@ -17,7 +17,7 @@ export default async function handler(req, res) {
       );
       const settings = await Setting.find({});
       const setting = settings[0];
-      res.send({ projects:projectRresult, setting });
+      res.send({ projects: projectRresult, setting });
     } catch (e) {
       console.log(e);
       res.status(500).send({ error: e.message });

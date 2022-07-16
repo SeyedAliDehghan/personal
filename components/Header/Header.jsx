@@ -1,5 +1,6 @@
 import Image from "next/image";
 import logo from '../../public/img/logo.png'
+import Link from "next/link";
 
 export default function Header() {
   // const logoUrl = "/img/"+logoName;
@@ -17,18 +18,16 @@ export default function Header() {
         </div>
         {/* menu items */}
         <div className="hidden md:flex space-x-6">
-        <a
-            href=""
-            className="hover:text-primaryColor font-bold ease-in-out duration-200"
-          >
-            Home
+        <Link href="/">
+          <a className="hover:text-primaryColor font-bold ease-in-out duration-200">
+              Home
           </a>
-          <a
-            href=""
-            className="hover:text-primaryColor font-bold ease-in-out duration-200"
-          >
-            Projects
+        </Link>
+        <Link href="/projects">
+          <a className="hover:text-primaryColor font-bold ease-in-out duration-200">
+              Projects
           </a>
+        </Link>
           <a
             href=""
             className="hover:text-primaryColor font-bold ease-in-out duration-200"

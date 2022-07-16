@@ -58,6 +58,8 @@ projectSchema.pre('remove',async function(next){
 
 
 projectSchema.methods.showPublicSingle= function(req){
+  const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress 
+
   const project=this
   const projectObject=project.toObject()
   projectObject.likeCount=projectObject.like.length
@@ -66,7 +68,7 @@ projectSchema.methods.showPublicSingle= function(req){
   delete projectObject.like
   const isLiked = project.like.find((like) => {
     if (
-      like.ip === req.ip
+      like.ip === ip
     ) {
       return true;
     }
@@ -82,24 +84,25 @@ projectSchema.methods.showPublicSingle= function(req){
 
 
 projectSchema.methods.makeItPublick= function(req){
+  // const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress 
   const project=this
   const projectObject=project.toObject()
-  projectObject.likeCount=projectObject.like.length
+  // projectObject.likeCount=projectObject.like.length
   projectObject.commentCount=project.comments.length
   delete projectObject.like
-  const isLiked = project.like.find((like) => {
-    if (
-      like.ip === req.ip
-    ) {
-      return true;
-    }
-    return false;
-  });
-  if (!isLiked) {
-    projectObject.isLiked=false
-  }else(
-    projectObject.isLiked=true
-  )
+  // const isLiked = project.like.find((like) => {
+  //   if (
+  //     like.ip === ip
+  //   ) {
+  //     return true;
+  //   }
+  //   return false;
+  // });
+  // if (!isLiked) {
+  //   projectObject.isLiked=false
+  // }else(
+  //   projectObject.isLiked=true
+  // )
   const date = new Date(projectObject.createdAt);
   projectObject.publicDate=date.getDate()+
   "/"+(date.getMonth()+1)+

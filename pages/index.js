@@ -2,15 +2,18 @@ import Head from "next/head";
 import Hero from "../components/Hero/Hero";
 import Header from "../components/Header/Header";
 import Projects from '../components/Projects/Projects'
+import ContactMe from "../components/ContactMe/ContactMe";
 import { useSession } from "next-auth/react";
 import { signOut } from "next-auth/react"
 import { useRouter } from "next/router";
 import axios from "axios";
 
-function Home( {data} ) {
+function Home( {apiData} ) {
+  // console.log(apiData)
   const { data: session } = useSession();
   const router = useRouter();
   console.log("session: ", session);
+
   return (
     <>
       <Head>
@@ -20,8 +23,9 @@ function Home( {data} ) {
       </Head>
       
       <Header/>
-      <Hero description={data.setting.description} socials={data.social}/>
-      <Projects projects={data.projects}/>
+      <Hero description={apiData.setting.description} socials={apiData.social}/>
+      <Projects projects={apiData.projects}/>
+      <ContactMe/>
     </>
   );
 }
@@ -33,7 +37,7 @@ export async function getServerSideProps() {
   // const data = await res.json()
   return {
     props: {
-      data:res.data
+      apiData:res.data
     },
   }
 }
