@@ -9,10 +9,7 @@ export default function Header( {projects} ) {
   const likeHandler=async (projectId)=>{
     try{
       const res = await axios.get("/api/projects/like/"+projectId)
-      // console.log(res)
       await setProject(project.map((pro)=>pro._id===projectId?({...pro,isLiked:res.data.isLiked}):pro))
-      // console.log(project)
-      // console.log(Array.isArray(project))
     }catch(e){
       console.log(e)
     }
