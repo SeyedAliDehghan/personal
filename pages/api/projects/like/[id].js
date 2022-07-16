@@ -22,16 +22,17 @@ export default async function handler(req, res) {
             ip: req.ip,
           });
           await post.save();
+        await post.populate("comments");
           return res.send(post.makeItPublick(req) );
         }
         post.like = await post.like.filter((like) => {
           like.ip != req.ip;
         });
-        await post.populate("comments");
-
         await post.save();
+        await post.populate("comments");
         return res.send(post.makeItPublick(req) );
       } catch (e) {
+        // console.log(e)
         res.status(400).send({ error: e.message });
       }
   }

@@ -3,22 +3,21 @@ import axios from "axios";
 import React, { useState,useEffect } from 'react'
 
 
-export default function Header({ projects }) {
-  console.log(projects)
-  const {project,setProjects}=useState(projects)
-  console.log(project)
+export default function Header( {projects} ) {
+  const [project,setProject]=useState(projects)
+  // console.log(project)
   const likeHandler=async (projectId)=>{
     try{
       const res = await axios.get("/api/projects/like/"+projectId)
       // console.log(res)
-      setProjects(project.find(pro => pro._id == projectId).isLiked = res.data.isLiked)
+      await setProject(project.map((pro)=>pro._id===projectId?({...pro,isLiked:res.data.isLiked}):pro))
+      // console.log(project)
+      // console.log(Array.isArray(project))
     }catch(e){
       console.log(e)
     }
   }
-  useEffect(()=>{
 
-  },[projects])
   return (
     <div className="container flex flex-col px-4 mx-auto mt-10 space-y-12 md:space-y-0">
       <h2 className="text-4xl font-bold text-center md:text-left mb-5">

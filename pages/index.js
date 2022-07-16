@@ -7,8 +7,7 @@ import { signOut } from "next-auth/react"
 import { useRouter } from "next/router";
 import axios from "axios";
 
-
-function Home({ data }) {
+function Home( {data} ) {
   const { data: session } = useSession();
   const router = useRouter();
   console.log("session: ", session);
@@ -29,7 +28,7 @@ function Home({ data }) {
 
 export async function getStaticProps() {
   const res = await axios.get(process.env.URL+"/api")
-  console.log(res)
+  // console.log(res)
   // const res = await fetch("http://localhost:3000/api")
   // const data = await res.json()
   return {
