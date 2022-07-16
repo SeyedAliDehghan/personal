@@ -26,7 +26,7 @@ function Home( {data} ) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const res = await axios.get(process.env.URL+"/api")
   // console.log(res)
   // const res = await fetch("http://localhost:3000/api")
