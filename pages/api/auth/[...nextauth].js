@@ -17,7 +17,7 @@ export default NextAuth({
                 try{
                     const response=await axios.post('http://localhost:3000/api/admin/login',{email:credentials.username,password:credentials.password})
                     if(response){
-                        return response.data
+                        return response.data.admin
                     }
                 }catch(e){
                     return null
