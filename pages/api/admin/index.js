@@ -18,7 +18,7 @@ export default async function handler(req, res) {
         });
         const setting=new Setting({
           logo:"logo.png",
-          description:"تست",
+          description:"I’m a Front-End developer specializing in building single page web applications . Currently, I’m looking for a new opportunity.",
           social:[
             {
               title:"instagram",
