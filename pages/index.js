@@ -7,6 +7,7 @@ import { useSession } from "next-auth/react";
 import { signOut } from "next-auth/react"
 import { useRouter } from "next/router";
 import axios from "axios";
+import Aboutme from "../components/AboutMe/Aboutme";
 
 function Home( {apiData} ) {
   // console.log(apiData)
@@ -24,8 +25,9 @@ function Home( {apiData} ) {
       
       <Header/>
       <Hero description={apiData.setting.description} socials={apiData.social}/>
-      <Projects projects={apiData.projects}/>
-      <ContactMe/>
+      <Aboutme/>
+      {/* <Projects projects={apiData.projects}/>
+      <ContactMe/> */}
     </>
   );
 }
