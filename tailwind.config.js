@@ -7,10 +7,16 @@ module.exports = {
   theme: {
     extend: {
       colors:{
-        primaryColor:'#FDAA1E'
+        bgColor:'#0A192F',
+        secondaryBgColor:'#112541',
+        primaryColor:'#64ffda',
+        secondaryColor:'#CCD6F6',
+        thirdColor:'#8892b0',
+        mainTextColor:'#8892b0'
       },
       fontFamily:{
-        primary:'ptsans'
+        roboto:['Roboto Mono', 'monospace'],
+        sans:["Radio Canada",'sans-serif']
       }
     },
   },
