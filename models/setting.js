@@ -7,6 +7,11 @@ const settingSchema = new mongoose.Schema({
   description:{
     type:String
   },
+  technologies:[{
+    name:{
+      type:String
+    }
+  }],
   social:[{
     title:{
       type:String
