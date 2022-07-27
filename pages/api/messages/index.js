@@ -10,6 +10,7 @@ export default async function handler(req, res) {
       await message.save();
       res.status(201).send(message);
     } catch (e) {
+      console.log(e)
       res.status(400).send({error:e.message});
     }
   }

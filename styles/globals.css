@@ -86,3 +86,27 @@
 .open .hamburger-bottom {
   transform: rotate(-45deg) translateY(6px) translate(-6px);
 }
+
+.scenemain {
+  max-width: 100%;
+  margin: 0 auto;
+  height: auto;
+  left: 0!important;
+  right: 0!important;
+  bottom: 0 !important;
+}
+
+
+.socialIcons{
+  transition: all 0.3s ease-in-out;
+}
+.socialIcons:hover{
+  transform: scale(1.2);
+  cursor: pointer;
+}
+label.required::after {
+  content: " (required) ";
+  margin-right: 4px;
+  font-size: 0.8rem;
+  /* color: red; */
+}

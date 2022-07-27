@@ -7,6 +7,11 @@ const projectSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
+  tag:{
+    type:String,
+    required:true,
+    defualt:'full'
+  },
   description: {
     type: String,
     trim: true,

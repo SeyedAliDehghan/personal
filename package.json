@@ -20,8 +20,10 @@
     "mongoose": "^6.4.4",
     "next": "12.2.1",
     "next-auth": "^4.10.0",
+    "parallax-js": "^3.1.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hot-toast": "^2.3.0",
     "slugify": "^1.6.5",
     "validator": "^13.7.0"
   },
