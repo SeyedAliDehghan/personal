@@ -1,4 +1,4 @@
-import illustration from '../../public/img/illustration.jpg'
+import illustration from "../../public/img/illustration.jpg";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import Link from "next/link";
@@ -35,7 +35,10 @@ export default function ContactMe({ description, socials }) {
         </Link>
       )}
       <div className="container flex flex-col-reverse items-center mx-auto mt-10 space-y-0 md:space-y-0 md:flex-row font-primary">
-        <form className="flex flex-col  space-y-4 w-full md:w-1/2">
+        <div className="md:w-1/2">
+          <Image src={illustration} alt="سید علی دهقان - لوگو" />
+        </div>
+        <form className="flex flex-col  space-y-4 w-full md:w-1/2 items-center">
           <div className="w-full md:w-2/3">
             <label htmlFor="nameInput" className="text-xl">
               Name:
@@ -80,13 +83,12 @@ export default function ContactMe({ description, socials }) {
               placeholder="Your message here"
             ></textarea>
           </div>
-          <button className='w-full md:w-2/3 p-3 px-6 pt-2 text-white bg-primaryColor rounded-lg self-baseline hover:shadow-lg hover:shadow-primaryColor ease-in-out duration-500 font-primary font-bold'>
+          <div className="w-full md:w-2/3">
+          <button className="w-full p-3 px-6 pt-2 text-white bg-primaryColor rounded-lg self-baseline hover:shadow-lg hover:shadow-primaryColor ease-in-out duration-500 font-primary font-bold">
             Send
           </button>
+          </div>
         </form>
-        <div className="md:w-1/2">
-          <Image src={illustration} alt="سید علی دهقان - لوگو" />
-        </div>
       </div>
     </div>
   );
