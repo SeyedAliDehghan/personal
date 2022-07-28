@@ -27,12 +27,21 @@ function Home( {apiData} ) {
 }
 
 export async function getServerSideProps() {
-  const res = await axios.get(process.env.URL+"/api/projects")
-  return {
-    props: {
-      apiData:res.data
-    },
+  try {
+    const res = await axios.get(process.env.URL+"/api/projects")
+    return {
+      props: {
+        apiData:res.data
+      },
+    }
+  } catch (error) {
+    return {
+      props: {
+        apiData:[]
+      },
+    }
   }
+  
 }
 
 export default Home;
