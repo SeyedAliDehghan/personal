@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 export default function Header({ projects }) {
   const [project, setProject] = useState(projects);
   const router = useRouter();
+
   // console.log(router.pathname);
 
   // const likeHandler=async (projectId)=>{
@@ -24,7 +25,7 @@ export default function Header({ projects }) {
 
   return (
     <div className="container flex flex-col px-4 mx-auto mt-10 space-y-12 md:space-y-0">
-      {router.pathname === "/" && (
+      {router.pathname===("/") && (
         <Link href="/projects/">
           <a>
             <div className="flex justify-between">
@@ -39,7 +40,7 @@ export default function Header({ projects }) {
           </a>
         </Link>
       )}
-      {router.pathname === "/projects" && (
+      {router.pathname.includes("/projects") && (
         <Link href="/projects/">
           <a>
               <h1 className="text-4xl font-bold text-center md:text-left mb-5">
@@ -51,7 +52,10 @@ export default function Header({ projects }) {
       { project.length!==0 && (
         <div className="flex flex-wrap">
         {project.map((project) => (
-          <div className="p-4 w-full sm:w-1/2 lg:w-1/3" key={project._id}>
+          <div className="p-4 w-full sm:w-1/2 lg:w-1/3 relative" key={project._id}>
+            {project.tag==="mini" && (
+              <div className="absolute z-30 top-7 px-7 py-1 bg-primaryColor text-white rounded-r-md labelShaddow font-bold">Mini</div>
+            )}
             <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
               <div className="projectImageCcontainer">
                 <Image
