@@ -55,7 +55,7 @@ export default function ContactMe({ description, socials }) {
   }, []);
   return (
     <div className="container flex flex-col px-4 mx-auto mt-10 space-y-12 md:space-y-0">
-      {router.pathname === "/" && (
+      {router.pathname===("/") && (
         <Link href="/contactme/">
           <a>
             <div className="flex justify-between">
@@ -70,7 +70,7 @@ export default function ContactMe({ description, socials }) {
           </a>
         </Link>
       )}
-      {router.pathname === "/contactme" && (
+      {router.pathname.includes("/contactme") && (
         <Link href="/projects/">
           <a>
             <h1 className="text-4xl font-bold text-center md:text-left mb-5">
