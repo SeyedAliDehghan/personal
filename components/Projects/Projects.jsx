@@ -48,7 +48,8 @@ export default function Header({ projects }) {
           </a>
         </Link>
       )}
-      <div className="flex flex-wrap">
+      { project.length!==0 && (
+        <div className="flex flex-wrap">
         {project.map((project) => (
           <div className="p-4 w-full sm:w-1/2 lg:w-1/3" key={project._id}>
             <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
@@ -92,6 +93,8 @@ export default function Header({ projects }) {
           </div>
         ))}
       </div>
+      )}
+      {project.length===0 && (<p>No project published yet</p>)}
     </div>
   );
 }
