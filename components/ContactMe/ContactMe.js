@@ -13,6 +13,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
+import Socialmedias from "../Socialmedias/Socialmedias";
 
 export default function ContactMe({ description, socials }) {
   const [name, setName] = useState("");
@@ -42,8 +43,8 @@ export default function ContactMe({ description, socials }) {
     const sendMessageFunction = sendMessage();
     toast.promise(sendMessageFunction, {
       loading: "Sending",
-      success: <b>Settings saved!</b>,
-      error: <b>Could not save.</b>,
+      success: <b>Your Message Sent!</b>,
+      error: <b>Could not send your message.</b>,
     });
   };
   useEffect(() => {
@@ -103,28 +104,7 @@ export default function ContactMe({ description, socials }) {
           <p className="w-2/3 mx-auto font-primary text-xl">
             Hey, you can contact me in this social networks:
           </p>
-          <div className=" my-10 w-2/3 mx-auto flex space-x-6 justify-between">
-            <FontAwesomeIcon
-              icon={faLinkedinIn}
-              style={{ width: "20px" }}
-              className="socialIcons"
-            />
-            <FontAwesomeIcon
-              icon={faPaperPlane}
-              style={{ width: "20px" }}
-              className="socialIcons"
-            />
-            <FontAwesomeIcon
-              icon={faInstagram}
-              style={{ width: "20px" }}
-              className="socialIcons"
-            />
-            <FontAwesomeIcon
-              icon={faWhatsapp}
-              style={{ width: "20px" }}
-              className="socialIcons"
-            />
-          </div>
+          <Socialmedias place={"contact"}/>
           <p className="w-2/3 mx-auto font-primary mb-3 text-xl">
             or this form:
           </p>
