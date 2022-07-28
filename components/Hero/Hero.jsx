@@ -2,6 +2,7 @@ import Image from "next/image";
 import illustration from "../../public/img/illustration.jpg";
 import Parallax from "parallax-js";
 import React, { useRef, useEffect } from "react";
+import Socialmedias from "../Socialmedias/Socialmedias";
 
 export default function Header({ description, socials }) {
   // console.log(socials)
@@ -26,6 +27,10 @@ export default function Header({ description, socials }) {
         <h1 className="w-full text-4xl text-center md:text-7xl md:text-left text-primaryColor font-bold">
           Seyed Ali Dehghan
         </h1>
+        <p className="w-full text-3xl text-center md:text-5xl md:text-left text-primaryColor ">
+          I Build Things for the web
+        </p>
+        <Socialmedias place={"hero"}/>
         <p className="max-w-sm text-center text-darkGrayishBlue md:text-left">
           {description}
         </p>
@@ -42,23 +47,23 @@ export default function Header({ description, socials }) {
       <div className="md:w-1/2">
         {/* <Image src={illustration} alt="سید علی دهقان - لوگو" /> */}
         <div ref={ref} id="scene">
-        <div data-parallax="scroll" className="scenemain" data-depth="0.3">
+        <div data-parallax="scroll" className="scenemain" data-depth="0.4">
             <img src="/img/5.png" alt="" />
           </div>
           <div data-parallax="scroll" className="scenemain" data-depth="0.1">
             <img src="/img/slide1_main.png" alt="" />
           </div>
-          <div data-parallax="scroll" className="scenemain" data-depth="0.15">
+          <div data-parallax="scroll" className="scenemain" data-depth="0.1">
             <img src="/img/3.png" alt="" />
           </div>
           <div data-parallax="scroll" className="scenemain" data-depth="0.2">
             <img src="/img/2.png" alt="" />
           </div>
           
-          <div data-parallax="scroll" className="scenemain" data-depth="0.2">
+          <div data-parallax="scroll" className="scenemain" data-depth="0.3">
             <img src="/img/4.png" alt="" />
           </div>
-          <div data-parallax="scroll" className="scenemain" data-depth="0.1">
+          <div data-parallax="scroll" className="scenemain" data-depth="0.05">
             <img src="/img/1.png" alt="" />
           </div>
         </div>
