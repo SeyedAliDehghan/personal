@@ -2,20 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base{
+@layer base {
   @font-face {
-    font-family: 'ptsans';
+    font-family: "ptsans";
     src: url(/fonts/PTSans-Regular.ttf);
-    font-weight:400;
-    font-style:normal;
-    font-display:swap;
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
   }
   @font-face {
-    font-family: 'ptsans';
+    font-family: "ptsans";
     src: url(/fonts/PTSans-Bold.ttf);
-    font-weight:700;
-    font-style:bold;
-    font-display:swap;
+    font-weight: 700;
+    font-style: bold;
+    font-display: swap;
   }
 }
 @layer utilities {
@@ -91,16 +91,15 @@
   max-width: 100%;
   margin: 0 auto;
   height: auto;
-  left: 0!important;
-  right: 0!important;
+  left: 0 !important;
+  right: 0 !important;
   bottom: 0 !important;
 }
 
-
-.socialIcons{
+.socialIcons {
   transition: all 0.3s ease-in-out;
 }
-.socialIcons:hover{
+.socialIcons:hover {
   transform: scale(1.2);
   cursor: pointer;
 }
@@ -109,4 +108,19 @@ label.required::after {
   margin-right: 4px;
   font-size: 0.8rem;
   /* color: red; */
+}
+
+.aboutMeList {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(140px, 200px));
+  gap: 0px 10px;
+  padding: 0px;
+  margin: 20px 0px 0px;
+  overflow: hidden;
+  list-style: none;
+}
+
+.labelShaddow{
+  -webkit-box-shadow: 2px 8px 20px -2px #FDAA1E; 
+  box-shadow: 2px 8px 20px -2px #FDAA1E;
 }
