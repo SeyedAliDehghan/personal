@@ -1,9 +1,7 @@
 import mongoose from 'mongoose'
 
 const settingSchema = new mongoose.Schema({
-  logo:{
-    type:String
-  },
+
   description:{
     type:String
   },
@@ -12,17 +10,6 @@ const settingSchema = new mongoose.Schema({
       type:String
     }
   }],
-  social:[{
-    title:{
-      type:String
-    },
-    fontClass:{
-      type:String
-    },
-    url:{
-      type:String
-    }
-  }]
 });
 
 
