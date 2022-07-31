@@ -41,7 +41,7 @@ export default NextAuth({
     },
     secret:"test",
     jwt:{
-        secret:"test",
+        secret:process.env.NEXTAUTH_SECRET,
         encryption:true
     }
 })

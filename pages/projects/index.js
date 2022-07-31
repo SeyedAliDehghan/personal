@@ -11,7 +11,7 @@ function Home( {apiData} ) {
   // console.log(apiData)
   const { data: session } = useSession();
   const router = useRouter();
-  console.log("session: ", session);
+  // console.log("session: ", session);
 
   return (
     <>

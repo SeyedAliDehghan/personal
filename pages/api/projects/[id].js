@@ -7,7 +7,7 @@ export default async function handler(req, res) {
   if (method === "GET") {
     const { id } = req.query;
     try {
-        const project = await Project.findById(id);
+        const project = await Project.findOne({slug:id});
         if (!project) {
           return res.status(404).send({ error: "project not found!" });
         }

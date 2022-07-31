@@ -16,15 +16,13 @@ const projectSchema = new mongoose.Schema({
     type: String,
     trim: true,
   },
-  projectFullDescription: {
-    type: String,
-  },
-  previewimg: {
+  img:{
     type: String,
     required: true,
   },
-  img:{
-    type: String,
+  content:{
+    type:String,
+    required:true
   },
   slug:{
     type: String,

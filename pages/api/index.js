@@ -7,7 +7,7 @@ export default async function handler(req, res) {
   dbConnect();
   if (method === "GET") {
     try {
-      const projects = await Project.find({}).limit(3);
+      const projects = await Project.find({}).sort({createdAt:'desc'}).limit(3);
       const projectRresult = [];
       const someFunction = await Promise.all(
         projects.map(async (project) => {

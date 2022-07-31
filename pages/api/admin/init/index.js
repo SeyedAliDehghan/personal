@@ -1,6 +1,6 @@
-import dbConnect from "../../../util/mongoose";
-import Admin from "../../../models/admin";
-import Setting from "../../../models/setting";
+import dbConnect from "../../../../util/mongoose";
+import Admin from "../../../../models/admin";
+import Setting from "../../../../models/setting";
 // import Project from '../../../models/project'
 
 export default async function handler(req, res) {
