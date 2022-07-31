@@ -54,7 +54,8 @@ export default function Header({ projects }) {
         {project.map((project) => (
           <div className="p-4 w-full sm:w-1/2 lg:w-1/3 relative" key={project._id}>
             {project.tag==="mini" && (
-              <div className="absolute z-30 top-7 px-7 py-1 bg-primaryColor text-white rounded-r-md labelShaddow font-bold">Mini</div>
+              <div className="ribbon ribbon-top-left z-20"><span>{project.tag}</span></div>
+              // <div className="absolute z-30 top-7 px-7 py-1 bg-primaryColor text-white rounded-r-md labelShaddow font-bold">Mini</div>
             )}
             <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
               <div className="projectImageCcontainer">
