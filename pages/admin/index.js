@@ -47,6 +47,18 @@ function Home({ apiData }) {
     return response;
   };
 
+  const saveDescription = async () => {
+    const response = await axios.post(
+      "http://localhost:3000/api/admin/setting",
+      {
+        description,
+      }
+    );
+    console.log(response.data)
+    setDescription(response.data.description);
+    return response;
+  };
+
   const addNotify = (e) => {
     const addTechnologyFunction = addTechnology();
     toast.promise(addTechnologyFunction, {
@@ -61,6 +73,14 @@ function Home({ apiData }) {
       loading: "Deleting",
       success: <b>Technology deleted</b>,
       error: <b>Could not delete technology</b>,
+    });
+  };
+  const saveNotify = (id) => {
+    const saveDescriptionFunction = saveDescription();
+    toast.promise(saveDescriptionFunction, {
+      loading: "Saving",
+      success: <b>description saved</b>,
+      error: <b>Could not save description</b>,
     });
   };
   // console.log(technologies)
@@ -80,6 +100,12 @@ function Home({ apiData }) {
               placeholder="Your message here"
             ></textarea>
           </div>
+          <button
+                className="mt-3 mb-3 w-full border-black border rounded py-2"
+                onClick={() => saveNotify()}
+              >
+                Save
+              </button>
           <div className="mt-3 flex flex-col">
             <div>Technologies:</div>
             <div className="flex flex-col">
