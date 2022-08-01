@@ -17,29 +17,50 @@ function Home({ apiData }) {
 
   const addNewTechnologyHandler = () => {
     if (newTechnology !== "") {
+      addNotify();
     }
   };
 
-  const sendMessage = async () => {
-    const current = new Date();
-    const date = `${current.getDate()}/${
-      current.getMonth() + 1
-    }/${current.getFullYear()}`;
-    const response = await axios.post("http://localhost:3000/api/messages", {
-      name,
-      email,
-      phone,
-      text,
-      date,
-    });
-    return Response;
+  const addTechnology = async () => {
+    const response = await axios.post(
+      "http://localhost:3000/api/admin/technologies",
+      {
+        name: newTechnology,
+      }
+    );
+    const responseSec = await axios.get(
+      "http://localhost:3000/api/admin/technologies"
+    );
+    setTechnologies(responseSec.data);
+    return response;
   };
-  const notify = (e) => {
-    const sendMessageFunction = sendMessage();
-    toast.promise(sendMessageFunction, {
+
+  const deleteTechnology = async (id) => {
+    // console.log(id)
+    const response = await axios.delete(
+      "http://localhost:3000/api/admin/technologies",{data:{id}}
+    );
+    const responseSec = await axios.get(
+      "http://localhost:3000/api/admin/technologies"
+    );
+    setTechnologies(responseSec.data);
+    return response;
+  };
+
+  const addNotify = (e) => {
+    const addTechnologyFunction = addTechnology();
+    toast.promise(addTechnologyFunction, {
       loading: "Sending",
-      success: <b>Your Message Sent!</b>,
-      error: <b>Could not send your message.</b>,
+      success: <b>New Technology Added</b>,
+      error: <b>Could not add new technology</b>,
+    });
+  };
+  const deleteNotify = (id) => {
+    const deleteTechnologyFunction = deleteTechnology(id);
+    toast.promise(deleteTechnologyFunction, {
+      loading: "Deleting",
+      success: <b>Technology deleted</b>,
+      error: <b>Could not delete technology</b>,
     });
   };
   // console.log(technologies)
@@ -78,10 +99,12 @@ function Home({ apiData }) {
             <div className="flex flex-wrap mt-3">
               {technologies.map((technology) => (
                 <div
+                
                   className="bg-slate-300 px-5 py-3 flex items-center mr-5 rounded-md mb-3"
                   key={technology._id}
                 >
                   <FontAwesomeIcon
+                    onClick={() => deleteNotify(technology._id)}
                     icon={faX}
                     style={{ width: "15px", marginRight: "5px" }}
                   />
@@ -97,7 +120,7 @@ function Home({ apiData }) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   try {
     const res = await axios.get(process.env.URL + "/api/admin/setting");
     return {
