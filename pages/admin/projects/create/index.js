@@ -6,11 +6,15 @@ import React, { useRef, useEffect, useState, Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX, faEdit } from "@fortawesome/free-solid-svg-icons";
 import toast, { Toaster } from "react-hot-toast";
+import dynamic from "next/dynamic";
+
 function Home() {
   // console.log(apiData)
   const { data: session } = useSession();
   const router = useRouter();
-
+  const Editor = dynamic(() => import("../../../../components/Editor/Editor"), {
+    ssr: false,
+  });
 
   return (
     <>
@@ -41,6 +45,8 @@ function Home() {
               className="form-input py-2 rounded-md w-full focus:shadow-lg mb-3"
               placeholder="Name"
             />
+            {/* <Editor /> */}
+            <Editor value={"Foo"} onChange={(v) => console.log(v)} />
           </form>
         </Panel>
       )}
