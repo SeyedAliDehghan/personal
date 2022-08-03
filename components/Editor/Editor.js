@@ -11,7 +11,7 @@ const Editor = ({ value, onChange }) => {
   }, []);
   return (
     <div>
-      {isLayoutReady ? (
+
         <CKEditor
           editor={CustomEditor}
           data={value}
@@ -20,9 +20,7 @@ const Editor = ({ value, onChange }) => {
             onChange(data);
           }}
         />
-      ) : (
-        <div>Editor Loading</div>
-      )}
+      
     </div>
   );
 };

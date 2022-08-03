@@ -6,16 +6,7 @@ import slugify from "slugify";
 export default async function handler(req, res) {
   const { method, cookies } = req;
   dbConnect();
-  if (method === "POST") {
-    const slug=slugify(req.body.title,{lower: true})
-    const project = new Project({...req.body,slug});
-    try {
-      await project.save();
-      res.status(201).send(project);
-    } catch (e) {
-      res.status(400).send({ error: e.message });
-    }
-  }
+
   if (method === "GET") {
     try {
       const projects = await Project.find({});
