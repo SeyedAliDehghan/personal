@@ -32,7 +32,7 @@ function Home() {
       headers: { "content-type": "multipart/form-data" },
     };
     const response = await axios.post(
-      "http://localhost:3000/api/projects/create",
+      "http://localhost:3000/api/admin/upload",
       formData,
       config
     );
@@ -48,7 +48,7 @@ function Home() {
     };
 
     const response = await axios.post(
-      "http://localhost:3000/api/projects/create",
+      "http://localhost:3000/api/admin/upload",
       formData,
       config
     );
