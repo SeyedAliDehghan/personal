@@ -10,6 +10,7 @@ import dynamic from "next/dynamic";
 
 function Home() {
   // console.log(apiData)
+  // const ref = useRef(null);
   const { data: session } = useSession();
   const router = useRouter();
   const Editor = dynamic(() => import("../../../../components/Editor/Editor"), {
@@ -30,7 +31,6 @@ function Home() {
     const config = {
       headers: { "content-type": "multipart/form-data" },
     };
-
     const response = await axios.post(
       "http://localhost:3000/api/projects/create",
       formData,
@@ -74,14 +74,13 @@ function Home() {
     });
   };
 
-
-  const sendFormData=()=>{
+  const sendFormData = async () => {
     const response = await axios.post("http://localhost:3000/api/projects", {
       // Data is gonnna be here
     });
     return Response;
-  }
-  const sendFormDataHandler = (e)=>{
+  };
+  const sendFormDataHandler = (e) => {
     e.preventDefault();
     const sendFormDataFunction = sendFormData();
     toast.promise(sendFormDataFunction, {
@@ -89,13 +88,18 @@ function Home() {
       success: <b>Post Sent!</b>,
       error: <b>Could not send Post.</b>,
     });
-  }
-
+  };
+  // const notify=(e)=>{
+  //   e.preventDefault()
+  //   const el2 = ref.current;
+  //   console.log(el2)
+  // }
   return (
     <>
       {session && (
         <Panel activeItem="projects">
-          <form onSubmit={(e)=>notify(e)}>
+          {/* onSubmit={(e)=>notify(e)} */}
+          <form action="localhost/dasdas">
             <label htmlFor="title" className="text-xl required">
               title:
             </label>
@@ -121,10 +125,13 @@ function Home() {
               placeholder="Name"
             />
             {/* <Editor /> */}
-            <Editor value={content} onChange={(v)=>{}} />
-
+            <Editor name="dasda" value={content} onBlurSet={setContent} />
             {imgUpload ? (
-              <div className="mt-3">img uploaded: {imgUploadName}</div>
+              // <div className="mt-3">img uploaded: {imgUploadName}</div>
+              <>
+                <div>img Uploaded:</div>
+                <img src={"/uploads/" + imgUploadName} style={{width:'30%'}}/>
+              </>
             ) : (
               <div>
                 <div>
@@ -143,7 +150,11 @@ function Home() {
               </div>
             )}
             {bannerUpload ? (
-              <div className="mt-3">Banner Uploaded: {bannerUploadName}</div>
+              // <div className="mt-3">Banner Uploaded: {bannerUploadName}</div>
+              <>
+                <div>Banner Uploaded:</div>
+                <img src={"/uploads/" + bannerUploadName} style={{width:'30%'}}/>
+              </>
             ) : (
               <div>
                 <label htmlFor="banner" className="text-xl required">
