@@ -27,7 +27,7 @@ export default async function handler(req, res) {
         await project.remove()
         res.send({message:"project deleted"})
       } catch (e) {
-        console.log(e)
+        // console.log(e)
         res.status(500).send({error:e.message});
       }
   }

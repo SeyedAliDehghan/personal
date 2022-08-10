@@ -39,8 +39,8 @@ function Home({ apiData }) {
 
 export async function getServerSideProps(context) {
   const { pid } = context.query;
-  console.log("===================");
-  console.log(pid);
+  // console.log("===================");
+  // console.log(pid);
   try {
     const res = await axios.get(process.env.URL + "/api/projects/" + pid);
     return {

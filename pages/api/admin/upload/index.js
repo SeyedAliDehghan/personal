@@ -9,7 +9,7 @@ const upload = multer({
 
 const apiRoute = nextConnect({
   onError(error, req, res) {
-    console.log(error)
+    // console.log(error)
     res.status(501).json({ error: `Sorry something Happened! ${error.message}` });
   },
   onNoMatch(req, res) {
@@ -20,7 +20,7 @@ const apiRoute = nextConnect({
 apiRoute.use(upload.single('theFile'));
 
 apiRoute.post((req, res) => {
-    console.log()
+    // console.log()
   res.status(200).json({ fileName:req.file.filename });
 });
 

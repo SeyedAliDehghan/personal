@@ -12,7 +12,7 @@ export default async function handler(req, res) {
 
       res.status(200).send(settings[0]);
     } catch (e) {
-      console.log(e);
+      // console.log(e);
       res.status(400).send(e);
     }
   }
@@ -23,7 +23,7 @@ export default async function handler(req, res) {
       await settings.save()
       res.status(200).send(settings);
     } catch (e) {
-      console.log(e);
+      // console.log(e);
       res.status(400).send(e);
     }
   }

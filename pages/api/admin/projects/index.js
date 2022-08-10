@@ -15,4 +15,11 @@ export default async function handler(req, res) {
       res.status(400).send({ error: e.message });
     }
   }
+  if(method==="DELETE"){
+    try {
+      
+    } catch (error) {
+      
+    }
+  }
 }

@@ -18,7 +18,7 @@ export default async function handler(req, res) {
         projects.map(async (project) => {
           await project.populate("comments");
           await result.push(project.makeItPublick(req));
-          console.log(project.makeItPublick(req))
+          // console.log(project.makeItPublick(req))
         })
       );
       res.send(result);

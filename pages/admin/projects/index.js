@@ -13,8 +13,35 @@ function Home({ apiData }) {
   const { data: session } = useSession();
   const router = useRouter();
   const [posts, setPosts] = useState(apiData);
-  console.log(posts);
-  // console.log(technologies)
+  // console.log(posts);
+  // console.log(technologies)\
+
+  const fetchProjectsAgain = async () => {
+    try {
+      const res = await axios.get("http://localhost:3000/api/projects");
+      console.log(res)
+      setPosts(res.data)
+    } catch (error) {
+      console.log(error)
+    }
+  };
+  const deletePostReq = async (id) => {
+    const response = await axios.get(
+      "http://localhost:3000/api/admin/projects/" + id
+    );
+    fetchProjectsAgain();
+    return response;
+  };
+  const projectDeleteHandler = (id) => {
+    if (confirm("are you sure?") == true) {
+      const deletePostReqFunction = deletePostReq(id);
+      toast.promise(deletePostReqFunction, {
+        loading: "deleting",
+        success: <b>Post deleted!</b>,
+        error: <b>Could not delete Post.</b>,
+      });
+    }
+  };
   return (
     <>
       {session && (
@@ -39,6 +66,7 @@ function Home({ apiData }) {
                     style={{ width: "15px", marginRight: "5px" }}
                   />
                   <FontAwesomeIcon
+                    onClick={() => projectDeleteHandler(post._id)}
                     icon={faX}
                     style={{ width: "15px", marginRight: "5px" }}
                   />
