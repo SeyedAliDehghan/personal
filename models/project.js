@@ -80,6 +80,13 @@ projectSchema.methods.showPublicSingle= function(req){
   }else(
     projectObject.isLiked=true
   )
+  const date = new Date(projectObject.createdAt);
+  projectObject.publicDate=date.getDate()+
+  "/"+(date.getMonth()+1)+
+  "/"+date.getFullYear()+
+  " "+date.getHours()+
+  ":"+date.getMinutes()+
+  ":"+date.getSeconds()
   return projectObject
 }
 

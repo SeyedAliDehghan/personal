@@ -3,12 +3,12 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import Panel from "../../../../components/Panel/Panel";
 import React, { useRef, useEffect, useState, Component } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faX, faEdit } from "@fortawesome/free-solid-svg-icons";
 import toast, { Toaster } from "react-hot-toast";
 import dynamic from "next/dynamic";
+import Input from "../../../../components/Input/Input";
 
 function Home() {
+
   // console.log(apiData)
   // const ref = useRef(null);
   const { data: session } = useSession();
@@ -19,11 +19,12 @@ function Home() {
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [previewLink, setPreviewLink] = useState("");
+  const [tag, setTag] = useState("full");
+  const [githubLink, setGithubLink] = useState("");
   const [content, setContent] = useState("Foo");
   const [imgUpload, setImgUpload] = useState(false);
   const [imgUploadName, setImgUploadName] = useState("");
-  const [bannerUpload, setBannerUpload] = useState(false);
-  const [bannerUploadName, setBannerUploadName] = useState("");
 
   const imageUploadeHandler = async (e) => {
     var formData = new FormData();
@@ -40,22 +41,7 @@ function Home() {
     setImgUploadName(response.data.fileName);
     return response;
   };
-  const bannerUploadeHandler = async (e) => {
-    var formData = new FormData();
-    formData.append("theFile", e.target.files[0]);
-    const config = {
-      headers: { "content-type": "multipart/form-data" },
-    };
 
-    const response = await axios.post(
-      "http://localhost:3000/api/admin/upload",
-      formData,
-      config
-    );
-    setBannerUpload(true);
-    setBannerUploadName(response.data.fileName);
-    return response;
-  };
 
   const uploadImg = (e) => {
     const imageUploadeHandlerFunction = imageUploadeHandler(e);
@@ -65,20 +51,21 @@ function Home() {
       error: <b>Could not upload</b>,
     });
   };
-  const uploadBanner = (e) => {
-    const bannerUploadeHandlerFunction = bannerUploadeHandler(e);
-    toast.promise(bannerUploadeHandlerFunction, {
-      loading: "uploading",
-      success: <b>uploaded</b>,
-      error: <b>Could not upload</b>,
-    });
-  };
 
   const sendFormData = async () => {
-    const response = await axios.post("http://localhost:3000/api/projects", {
-      // Data is gonnna be here
+    const response = await axios.post("http://localhost:3000/api/admin/projects/", {
+      title,
+      tag,
+      description,
+      img:imgUploadName,
+      content,
+      githubLink,
+      previewLink
+
     });
-    return Response;
+    console.log(response);
+    
+    return response;
   };
   const sendFormDataHandler = (e) => {
     e.preventDefault();
@@ -88,7 +75,12 @@ function Home() {
       success: <b>Post Sent!</b>,
       error: <b>Could not send Post.</b>,
     });
+
   };
+  const removeImgHandler=()=>{
+    setImgUpload(false);
+    setImgUploadName("");
+  }
   // const notify=(e)=>{
   //   e.preventDefault()
   //   const el2 = ref.current;
@@ -99,31 +91,9 @@ function Home() {
       {session && (
         <Panel activeItem="projects">
           {/* onSubmit={(e)=>notify(e)} */}
-          <form action="localhost/dasdas">
-            <label htmlFor="title" className="text-xl required">
-              title:
-            </label>
-            <input
-              required
-              id="title"
-              type="text"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              className="form-input py-2 rounded-md w-full focus:shadow-lg"
-              placeholder="Name"
-            />
-            <label htmlFor="description" className="text-xl required">
-              description:
-            </label>
-            <input
-              required
-              id="description"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              type="text"
-              className="form-input py-2 rounded-md w-full focus:shadow-lg mb-3"
-              placeholder="Name"
-            />
+          <form onSubmit={(e)=>sendFormDataHandler(e)}>
+            <Input htmlId="title" label="title" value={title} setValue={setTitle} placeHolder="title"/>
+            <Input htmlId="description" label="description" value={description} setValue={setDescription} placeHolder="description"/>
             {/* <Editor /> */}
             <Editor name="dasda" value={content} onBlurSet={setContent} />
             {imgUpload ? (
@@ -131,6 +101,7 @@ function Home() {
               <>
                 <div>img Uploaded:</div>
                 <img src={"/uploads/" + imgUploadName} style={{width:'30%'}}/>
+                <button onClick={()=>removeImgHandler()} className=" mt-5  mb-5 rounded px-3 py-2 border border-gray-500">remove img</button>
               </>
             ) : (
               <div>
@@ -149,27 +120,9 @@ function Home() {
                 </div>
               </div>
             )}
-            {bannerUpload ? (
-              // <div className="mt-3">Banner Uploaded: {bannerUploadName}</div>
-              <>
-                <div>Banner Uploaded:</div>
-                <img src={"/uploads/" + bannerUploadName} style={{width:'30%'}}/>
-              </>
-            ) : (
-              <div>
-                <label htmlFor="banner" className="text-xl required">
-                  banner
-                </label>
-                <input
-                  name="theFile"
-                  onChange={(e) => uploadBanner(e)}
-                  required
-                  id="banner"
-                  type="file"
-                  className="form-input py-2 rounded-md w-full focus:shadow-lg mb-3"
-                />
-              </div>
-            )}
+            <Input htmlId="tag" label="tag" value={tag} setValue={setTag} placeHolder="tag"/>
+            <Input htmlId="prviewlink" label="preview link" value={previewLink} setValue={setPreviewLink} placeHolder="http://something.com"/>
+            <Input htmlId="githublink" label="github link" value={githubLink} setValue={setGithubLink} placeHolder="http://something.com"/>
             <button type="submit">Send</button>
           </form>
         </Panel>
