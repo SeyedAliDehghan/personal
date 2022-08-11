@@ -97,6 +97,7 @@ projectSchema.methods.makeItPublick= function(req){
   projectObject.likeCount=projectObject.like.length
   projectObject.commentCount=project.comments.length
   delete projectObject.like
+  delete projectObject.content
   const isLiked = project.like.find((like) => {
     if (
       like.ip === req.ip
