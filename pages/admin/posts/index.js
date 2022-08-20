@@ -19,7 +19,7 @@ function Home({ apiData }) {
 
   const fetchProjectsAgain = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/api/projects");
+      const res = await axios.get("http://localhost:3000/api/posts");
       console.log(res);
       setPosts(res.data);
     } catch (error) {
@@ -28,7 +28,7 @@ function Home({ apiData }) {
   };
   const deletePostReq = async (id) => {
     const response = await axios.get(
-      "http://localhost:3000/api/admin/projects/" + id
+      "http://localhost:3000/api/admin/posts/" + id
     );
     fetchProjectsAgain();
     return response;
@@ -41,20 +41,21 @@ function Home({ apiData }) {
         success: <b>Post deleted!</b>,
         error: <b>Could not delete Post.</b>,
       });
+      
     }
   };
   return (
     <>
       {session && (
-        <Panel activeItem="projects">
-          <Link href="/admin/projects/create">
+        <Panel activeItem="posts">
+          <Link href="/admin/posts/create">
             <a>
-              <button>Add new Project</button>
+              <button>Add new Post</button>
             </a>
           </Link>
 
           <div className="flex flex-col mb-3 mt-5">
-            <div className="mb-3">All Projects</div>
+            <div className="mb-3">All posts</div>
             {posts.map((post) => (
               <div
                 className="w-full border border-black rounded px-3 py-2 mb-3 flex justify-between items-center"
@@ -62,7 +63,7 @@ function Home({ apiData }) {
               >
                 <span>{post.title}</span>
                 <span className="flex space-x-3 items-center">
-                  <Link href={`/admin/projects/edit/${post.slug}`}>
+                  <Link href={`/admin/posts/edit/${post.slug}`}>
                     <a>
                       <FontAwesomeIcon
                         className="flex"
@@ -91,7 +92,7 @@ function Home({ apiData }) {
 
 export async function getServerSideProps() {
   try {
-    const res = await axios.get(process.env.URL + "/api/projects");
+    const res = await axios.get(process.env.URL + "/api/posts");
     return {
       props: {
         apiData: res.data,

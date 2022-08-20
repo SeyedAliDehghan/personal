@@ -7,8 +7,7 @@ import toast, { Toaster } from "react-hot-toast";
 import dynamic from "next/dynamic";
 import Input from "../../../../components/Input/Input";
 
-function Home() {
-
+function Home({apiData}) {
   // console.log(apiData)
   // const ref = useRef(null);
   const { data: session } = useSession();
@@ -17,14 +16,11 @@ function Home() {
     ssr: false,
   });
 
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [previewLink, setPreviewLink] = useState("");
-  const [tag, setTag] = useState("full");
-  const [githubLink, setGithubLink] = useState("");
-  const [content, setContent] = useState("Foo");
-  const [imgUpload, setImgUpload] = useState(false);
-  const [imgUploadName, setImgUploadName] = useState("");
+  const [title, setTitle] = useState(apiData.title);
+  const [description, setDescription] = useState(apiData.description);
+  const [content, setContent] = useState(apiData.content);
+  const [imgUpload, setImgUpload] = useState(true);
+  const [imgUploadName, setImgUploadName] = useState(apiData.img);
 
   const imageUploadeHandler = async (e) => {
     var formData = new FormData();
@@ -53,14 +49,11 @@ function Home() {
   };
 
   const sendFormData = async () => {
-    const response = await axios.post("http://localhost:3000/api/admin/projects/", {
+    const response = await axios.patch(`http://localhost:3000/api/admin/posts/${apiData._id}`, {
       title,
-      tag,
       description,
       img:imgUploadName,
       content,
-      githubLink,
-      previewLink
 
     });
     console.log(response);
@@ -72,11 +65,10 @@ function Home() {
     const sendFormDataFunction = sendFormData();
     toast.promise(sendFormDataFunction, {
       loading: "Sending",
-      success: <b>Post Sent!</b>,
-      error: <b>Could not send Post.</b>,
+      success: <b>post saved!</b>,
+      error: <b>Could not save post.</b>,
     });
-    // router.push('/admin/projects')
-
+    // router.push('/admin/posts')
   };
   const removeImgHandler=()=>{
     setImgUpload(false);
@@ -90,7 +82,7 @@ function Home() {
   return (
     <>
       {session && (
-        <Panel activeItem="projects">
+        <Panel activeItem="posts">
           {/* onSubmit={(e)=>notify(e)} */}
           <form onSubmit={(e)=>sendFormDataHandler(e)}>
             <Input htmlId="title" label="title" value={title} setValue={setTitle} placeHolder="title"/>
@@ -121,10 +113,7 @@ function Home() {
                 </div>
               </div>
             )}
-            <Input htmlId="tag" label="tag" value={tag} setValue={setTag} placeHolder="tag"/>
-            <Input htmlId="prviewlink" label="preview link" value={previewLink} setValue={setPreviewLink} placeHolder="http://something.com"/>
-            <Input htmlId="githublink" label="github link" value={githubLink} setValue={setGithubLink} placeHolder="http://something.com"/>
-            <button type="submit">Send</button>
+            <button type="submit" className="block">Send</button>
           </form>
         </Panel>
       )}
@@ -132,5 +121,25 @@ function Home() {
     </>
   );
 }
+
+
+export async function getServerSideProps(context) {
+    const { slug } = context.query;
+    // console.log("===================");
+    // console.log(pid);
+    try {
+      const res = await axios.get(process.env.URL + "/api/posts/" + slug);
+      console.log(res.data)
+      return {
+        props: {
+          apiData: res.data,
+        },
+      };
+    } catch (error) {
+      return {
+        notFound: true,
+      };
+    }
+  }
 
 export default Home;

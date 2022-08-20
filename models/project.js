@@ -36,13 +36,6 @@ const projectSchema = new mongoose.Schema({
     type: String,
     trim: true,
   },
-  like: [
-    {
-      ip: {
-        type: String,
-      },
-    },
-  ],
 },{
   timestamps:true
 });
@@ -63,23 +56,8 @@ projectSchema.pre('remove',async function(next){
 projectSchema.methods.showPublicSingle= function(req){
   const project=this
   const projectObject=project.toObject()
-  projectObject.likeCount=projectObject.like.length
   projectObject.commentCount=project.comments.length
   projectObject.comments=project.comments
-  delete projectObject.like
-  const isLiked = project.like.find((like) => {
-    if (
-      like.ip === req.ip
-    ) {
-      return true;
-    }
-    return false;
-  });
-  if (!isLiked) {
-    projectObject.isLiked=false
-  }else(
-    projectObject.isLiked=true
-  )
   const date = new Date(projectObject.createdAt);
   projectObject.publicDate=date.getDate()+
   "/"+(date.getMonth()+1)+
@@ -94,23 +72,10 @@ projectSchema.methods.showPublicSingle= function(req){
 projectSchema.methods.makeItPublick= function(req){
   const project=this
   const projectObject=project.toObject()
-  projectObject.likeCount=projectObject.like.length
+
   projectObject.commentCount=project.comments.length
-  delete projectObject.like
   delete projectObject.content
-  const isLiked = project.like.find((like) => {
-    if (
-      like.ip === req.ip
-    ) {
-      return true;
-    }
-    return false;
-  });
-  if (!isLiked) {
-    projectObject.isLiked=false
-  }else(
-    projectObject.isLiked=true
-  )
+
   const date = new Date(projectObject.createdAt);
   projectObject.publicDate=date.getDate()+
   "/"+(date.getMonth()+1)+

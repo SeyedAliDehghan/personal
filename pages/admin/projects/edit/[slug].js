@@ -7,8 +7,8 @@ import toast, { Toaster } from "react-hot-toast";
 import dynamic from "next/dynamic";
 import Input from "../../../../components/Input/Input";
 
-function Home() {
-
+function Home({apiData}) {
+    // console.log(apiData)
   // console.log(apiData)
   // const ref = useRef(null);
   const { data: session } = useSession();
@@ -17,14 +17,14 @@ function Home() {
     ssr: false,
   });
 
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [previewLink, setPreviewLink] = useState("");
-  const [tag, setTag] = useState("full");
-  const [githubLink, setGithubLink] = useState("");
-  const [content, setContent] = useState("Foo");
-  const [imgUpload, setImgUpload] = useState(false);
-  const [imgUploadName, setImgUploadName] = useState("");
+  const [title, setTitle] = useState(apiData.title);
+  const [description, setDescription] = useState(apiData.description);
+  const [previewLink, setPreviewLink] = useState(apiData.previewLink);
+  const [tag, setTag] = useState(apiData.tag);
+  const [githubLink, setGithubLink] = useState(apiData.githubLink);
+  const [content, setContent] = useState(apiData.content);
+  const [imgUpload, setImgUpload] = useState(true);
+  const [imgUploadName, setImgUploadName] = useState(apiData.img);
 
   const imageUploadeHandler = async (e) => {
     var formData = new FormData();
@@ -53,7 +53,7 @@ function Home() {
   };
 
   const sendFormData = async () => {
-    const response = await axios.post("http://localhost:3000/api/admin/projects/", {
+    const response = await axios.patch(`http://localhost:3000/api/admin/projects/${apiData._id}`, {
       title,
       tag,
       description,
@@ -72,11 +72,10 @@ function Home() {
     const sendFormDataFunction = sendFormData();
     toast.promise(sendFormDataFunction, {
       loading: "Sending",
-      success: <b>Post Sent!</b>,
-      error: <b>Could not send Post.</b>,
+      success: <b>project saved!</b>,
+      error: <b>Could not save project.</b>,
     });
     // router.push('/admin/projects')
-
   };
   const removeImgHandler=()=>{
     setImgUpload(false);
@@ -132,5 +131,24 @@ function Home() {
     </>
   );
 }
+
+
+export async function getServerSideProps(context) {
+    const { slug } = context.query;
+    // console.log("===================");
+    // console.log(pid);
+    try {
+      const res = await axios.get(process.env.URL + "/api/projects/" + slug);
+      return {
+        props: {
+          apiData: res.data,
+        },
+      };
+    } catch (error) {
+      return {
+        notFound: true,
+      };
+    }
+  }
 
 export default Home;

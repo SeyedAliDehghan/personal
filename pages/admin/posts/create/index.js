@@ -19,9 +19,6 @@ function Home() {
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [previewLink, setPreviewLink] = useState("");
-  const [tag, setTag] = useState("full");
-  const [githubLink, setGithubLink] = useState("");
   const [content, setContent] = useState("Foo");
   const [imgUpload, setImgUpload] = useState(false);
   const [imgUploadName, setImgUploadName] = useState("");
@@ -53,17 +50,13 @@ function Home() {
   };
 
   const sendFormData = async () => {
-    const response = await axios.post("http://localhost:3000/api/admin/projects/", {
+    const response = await axios.post("http://localhost:3000/api/admin/posts/", {
       title,
-      tag,
       description,
       img:imgUploadName,
       content,
-      githubLink,
-      previewLink
-
     });
-    console.log(response);
+    // console.log(response);
     
     return response;
   };
@@ -75,7 +68,8 @@ function Home() {
       success: <b>Post Sent!</b>,
       error: <b>Could not send Post.</b>,
     });
-    // router.push('/admin/projects')
+    // router.push('/admin/posts')
+
 
   };
   const removeImgHandler=()=>{
@@ -90,7 +84,7 @@ function Home() {
   return (
     <>
       {session && (
-        <Panel activeItem="projects">
+        <Panel activeItem="posts">
           {/* onSubmit={(e)=>notify(e)} */}
           <form onSubmit={(e)=>sendFormDataHandler(e)}>
             <Input htmlId="title" label="title" value={title} setValue={setTitle} placeHolder="title"/>
@@ -121,10 +115,7 @@ function Home() {
                 </div>
               </div>
             )}
-            <Input htmlId="tag" label="tag" value={tag} setValue={setTag} placeHolder="tag"/>
-            <Input htmlId="prviewlink" label="preview link" value={previewLink} setValue={setPreviewLink} placeHolder="http://something.com"/>
-            <Input htmlId="githublink" label="github link" value={githubLink} setValue={setGithubLink} placeHolder="http://something.com"/>
-            <button type="submit">Send</button>
+            <button type="submit" className="block">Send</button>
           </form>
         </Panel>
       )}

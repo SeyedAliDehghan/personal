@@ -1,8 +1,8 @@
 import { useSession } from "next-auth/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPaste } from "@fortawesome/free-regular-svg-icons";
+import { faMessage, faNewspaper, faPaste } from "@fortawesome/free-regular-svg-icons";
 import Link from "next/link";
-import { faHome } from "@fortawesome/free-solid-svg-icons";
+import { faHome, faKey } from "@fortawesome/free-solid-svg-icons";
 
 export default function List({ activeItem }) {
   const { data: session } = useSession();
@@ -46,34 +46,57 @@ export default function List({ activeItem }) {
         </Link>
       </li>
       <li>
-        <a
-          href="#"
-          className={`mb-1 px-2 py-2 rounded-lg flex items-center font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-200 ${
-            activeItem === "posts" ? " bg-gray-200 text-blue-600" : null
-          }`}
-        >
-          <span className="mr-4 opacity-50">♥</span>
-          <span>Posts</span>
-        </a>
+        <Link href="/admin/posts">
+          <a
+            className={`mb-1 px-2 py-2 rounded-lg flex items-center font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-200 ${
+              activeItem === "posts" ? " bg-gray-200 text-blue-600" : null
+            }`}
+          >
+            <span className="mr-4 opacity-50">
+            <FontAwesomeIcon
+                icon={faNewspaper}
+                style={{ width: "15px", marginRight: "5px" }}
+              />
+            </span>
+            <span>Posts</span>
+          </a>
+        </Link>
       </li>
       <li>
-        <a
-          href="#"
-          className="mb-1 px-2 py-2 rounded-lg flex items-center font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-200"
-        >
-          <span className="mr-4 opacity-50">♥</span>
-          <span>Active</span>
-        </a>
+      <Link href="/admin/messages">
+          <a
+            className={`mb-1 px-2 py-2 rounded-lg flex items-center font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-200 ${
+              activeItem === "messages" ? " bg-gray-200 text-blue-600" : null
+            }`}
+          >
+            <span className="mr-4 opacity-50">
+            <FontAwesomeIcon
+                icon={faMessage}
+                style={{ width: "15px", marginRight: "5px" }}
+              />
+            </span>
+            <span>Messages</span>
+          </a>
+        </Link>
       </li>
       <li>
-        <a
-          href="#"
-          className="mb-1 px-2 py-2 rounded-lg flex items-center font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-200"
-        >
-          <span className="mr-4 opacity-50">♥</span>
-          <span>Item</span>
-        </a>
+      <Link href="/admin/credentials">
+          <a
+            className={`mb-1 px-2 py-2 rounded-lg flex items-center font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-200 ${
+              activeItem === "messages" ? " bg-gray-200 text-blue-600" : null
+            }`}
+          >
+            <span className="mr-4 opacity-50">
+            <FontAwesomeIcon
+                icon={faKey}
+                style={{ width: "15px", marginRight: "5px" }}
+              />
+            </span>
+            <span>Credentials</span>
+          </a>
+        </Link>
       </li>
     </ul>
   );
+  
 }

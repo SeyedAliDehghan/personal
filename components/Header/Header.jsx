@@ -17,7 +17,10 @@ export default function Header() {
       {session && (
         <div className="bg-black text-white ">
           <div className="container mx-auto py-2 px-3 flex justify-between">
-            <div>Wlc Admin,{session.user.name}</div>
+            <Link href="/admin">
+              <a>Admin Panel</a>
+            </Link>
+            {/* <div>Wlc Admin,{session.user.name}</div> */}
             <div onClick={() => signOut()} className="cursor-pointer	">
               LogOut
             </div>
@@ -48,12 +51,11 @@ export default function Header() {
                 Projects
               </a>
             </Link>
-            <a
-              href=""
-              className="hover:text-primaryColor font-bold ease-in-out duration-200"
-            >
-              About me
-            </a>
+            <Link href="/aboutme">
+              <a className="hover:text-primaryColor font-bold ease-in-out duration-200">
+                About Me
+              </a>
+            </Link>
           </div>
           {/* Hamburger Icon */}
           <button
@@ -70,12 +72,13 @@ export default function Header() {
             <span className="hamburger-bottom"></span>
           </button>
 
-          <a
-            href="#"
-            className="hidden md:flex p-3 px-6 pt-2 text-white bg-primaryColor rounded-full self-baseline hover:shadow-lg hover:shadow-primaryColor ease-in-out duration-500 font-primary"
-          >
-            Contact me
-          </a>
+          <Link href="/contactme">
+            <a
+              className="hidden md:flex p-3 px-6 pt-2 text-white bg-primaryColor rounded-full self-baseline hover:shadow-lg hover:shadow-primaryColor ease-in-out duration-500 font-primary"
+            >
+              Contact me
+            </a>
+          </Link>
         </div>
         {/* Mobile Menu */}
         <div className="md:hidden">
