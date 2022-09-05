@@ -8,8 +8,8 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-export default function Header({ projects }) {
-  const [project, setProject] = useState(projects);
+export default function Posts({ posts }) {
+  const [post, setPost] = useState(posts);
   const router = useRouter();
 
   // console.log(router.pathname);
@@ -26,11 +26,11 @@ export default function Header({ projects }) {
   return (
     <div className="container flex flex-col px-4 mx-auto mt-10 space-y-12 md:space-y-0">
       {router.pathname===("/") && (
-        <Link href="/projects/">
+        <Link href="/blog/">
           <a>
             <div className="flex justify-between">
               <h2 className="text-4xl font-bold text-center md:text-left mb-5">
-                Projects
+                Blog
               </h2>
               <FontAwesomeIcon
                 icon={faAngleRight}
@@ -40,18 +40,18 @@ export default function Header({ projects }) {
           </a>
         </Link>
       )}
-      {router.pathname.includes("/projects") && (
-        <Link href="/projects/">
+      {router.pathname.includes("/posts") && (
+        <Link href="/blog/">
           <a>
               <h1 className="text-4xl font-bold text-center md:text-left mb-5">
-                Projects
+                Blog
               </h1>
           </a>
         </Link>
       )}
-      { project.length!==0 && (
+      { post.length!==0 && (
         <div className="flex flex-wrap">
-        {project.map((project) => (
+        {post.map((project) => (
           <div className="p-4 w-full sm:w-1/2 lg:w-1/3 relative" key={project._id}>
             {project.tag==="mini" && (
               <div className="ribbon ribbon-top-left z-20"><span>{project.tag}</span></div>
@@ -61,7 +61,7 @@ export default function Header({ projects }) {
               <div className="projectImageCcontainer">
                 <Image
                   src="/img/mock.jpg"
-                  alt={projects.title}
+                  alt={project.title}
                   layout="fill"
                   className="projectImage"
                 />
@@ -77,7 +77,7 @@ export default function Header({ projects }) {
                   {project.description}
                 </div>
                 <div className="flex items-center flex-wrap ">
-                  <Link href={"/projects/" + project.slug}>
+                  <Link href={"/blog/" + project.slug}>
                     <a className="text-primaryColor inline-flex items-center md:mb-2 lg:mb-0">
                       Read More
                     </a>
@@ -99,7 +99,7 @@ export default function Header({ projects }) {
         ))}
       </div>
       )}
-      {project.length===0 && (<p>No project published yet</p>)}
+      {post.length===0 && (<p>No project published yet</p>)}
     </div>
   );
 }

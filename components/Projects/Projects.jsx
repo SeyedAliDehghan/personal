@@ -8,7 +8,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-export default function Header({ projects }) {
+export default function Projects({ projects }) {
   const [project, setProject] = useState(projects);
   const router = useRouter();
 
@@ -61,7 +61,7 @@ export default function Header({ projects }) {
               <div className="projectImageCcontainer">
                 <Image
                   src="/img/mock.jpg"
-                  alt={projects.title}
+                  alt={project.title}
                   layout="fill"
                   className="projectImage"
                 />
@@ -85,13 +85,13 @@ export default function Header({ projects }) {
                   <div className="text-gray-400 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
                     {/* <FontAwesomeIcon icon={faGithub} style={{width:"15px",marginRight:"5px"}}/> */}
                   </div>
-                  <div className="text-gray-400 inline-flex items-center leading-none text-sm">
+                  {/* <div className="text-gray-400 inline-flex items-center leading-none text-sm">
                     <FontAwesomeIcon
                       icon={faMessage}
                       style={{ width: "15px", marginRight: "5px" }}
                     />
                     <span>{project.commentCount}</span>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>

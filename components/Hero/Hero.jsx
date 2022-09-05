@@ -4,7 +4,7 @@ import Parallax from "parallax-js";
 import React, { useRef, useEffect } from "react";
 import Socialmedias from "../Socialmedias/Socialmedias";
 
-export default function Header({ description, socials }) {
+export default function Hero({ description, socials }) {
   // console.log(socials)
   const ref = useRef(null);
   //   var scene = document.getElementById("scene");

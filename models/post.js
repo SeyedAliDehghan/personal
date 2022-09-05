@@ -64,10 +64,7 @@ postSchema.methods.makeItPublick= function(req){
   const date = new Date(postObject.createdAt);
   postObject.publicDate=date.getDate()+
   "/"+(date.getMonth()+1)+
-  "/"+date.getFullYear()+
-  " "+date.getHours()+
-  ":"+date.getMinutes()+
-  ":"+date.getSeconds()
+  "/"+date.getFullYear()
   return postObject
 }
 

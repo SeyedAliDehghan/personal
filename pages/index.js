@@ -7,7 +7,7 @@ import Aboutme from "../components/Aboutme/Aboutme";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import axios from "axios";
-
+import Posts from '../components/Posts/Posts'
 function Home( {apiData} ) {
   // console.log(apiData)
   const { data: session } = useSession();
@@ -26,21 +26,28 @@ function Home( {apiData} ) {
       <Hero description={apiData.setting.description} socials={apiData.social}/>
       <Aboutme  technologies={apiData.setting.technologies}/>
       <Projects projects={apiData.projects}/>
+      <Posts posts={apiData.posts}/>
       <ContactMe/>
     </>
   );
 }
 
 export async function getServerSideProps() {
+  // try {
+    
+  // } catch (error) {
+  //   console.log(error)
+  // }
   const res = await axios.get(process.env.URL+"/api")
-  // console.log(res)
+    return {
+      props: {
+        apiData:res.data
+      },
+    }
+  // console.log(res.data,"===================")
   // const res = await fetch("http://localhost:3000/api")
   // const data = await res.json()
-  return {
-    props: {
-      apiData:res.data
-    },
-  }
+  
 }
 
 export default Home;
