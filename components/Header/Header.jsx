@@ -51,6 +51,11 @@ export default function Header() {
                 Projects
               </a>
             </Link>
+            <Link href="/blog">
+              <a className="hover:text-primaryColor font-bold ease-in-out duration-200">
+                Blog
+              </a>
+            </Link>
             <Link href="/aboutme">
               <a className="hover:text-primaryColor font-bold ease-in-out duration-200">
                 About Me
@@ -97,6 +102,11 @@ export default function Header() {
             <Link href="/projects">
               <a className="hover:text-primaryColor font-bold ease-in-out duration-200">
                 Projects
+              </a>
+            </Link>
+            <Link href="/blog">
+              <a className="hover:text-primaryColor font-bold ease-in-out duration-200">
+                Blog
               </a>
             </Link>
             <Link href="/aboutme">
