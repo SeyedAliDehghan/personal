@@ -35,7 +35,7 @@ function Home({ apiData }) {
           </div>
         </div>
         <div className="w-full lg:w-1/3 py-6 px-5">
-          <div className="flex flex-col space-y-5">
+          <div className="flex flex-col space-y-5 sticky top-8">
             <Link href={`${apiData.githubLink}`}>
               <a className="w-100 py-3 rounded flex items-center justify-center bg-black text-white">
               <FontAwesomeIcon
