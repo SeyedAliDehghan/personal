@@ -72,17 +72,11 @@ projectSchema.methods.showPublicSingle= function(req){
 projectSchema.methods.makeItPublick= function(req){
   const project=this
   const projectObject=project.toObject()
-
-  projectObject.commentCount=project.comments.length
   delete projectObject.content
-
   const date = new Date(projectObject.createdAt);
   projectObject.publicDate=date.getDate()+
   "/"+(date.getMonth()+1)+
-  "/"+date.getFullYear()+
-  " "+date.getHours()+
-  ":"+date.getMinutes()+
-  ":"+date.getSeconds()
+  "/"+date.getFullYear()
   return projectObject
 }
 

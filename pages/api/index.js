@@ -9,6 +9,12 @@ export default async function handler(req, res) {
     try {
       const projects = await Project.find({}).sort({createdAt:'desc'}).limit(3);
       const posts = await Post.find({}).sort({createdAt:'desc'}).limit(3);
+      const projectResult = [];
+      const someOtherFunction = await Promise.all(
+        projects.map(async (project) => {
+          await projectResult.push(project.makeItPublick(req));
+        })
+      );
       const postResult = [];
       const someFunction = await Promise.all(
         posts.map(async (post) => {
@@ -18,7 +24,7 @@ export default async function handler(req, res) {
       );
       const settings = await Setting.find({});
       const setting = settings[0];
-      res.send({ projects,posts:postResult,setting });
+      res.send({ projects:projectResult,posts:postResult,setting });
     } catch (e) {
       console.log(e);
       res.status(500).send({ error: e.message });
