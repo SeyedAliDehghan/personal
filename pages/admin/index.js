@@ -23,13 +23,13 @@ function Home({ apiData }) {
 
   const addTechnology = async () => {
     const response = await axios.post(
-      "http://localhost:3000/api/admin/technologies",
+      process.env.URL+"/api/admin/technologies",
       {
         name: newTechnology,
       }
     );
     const responseSec = await axios.get(
-      "http://localhost:3000/api/admin/technologies"
+      process.env.URL+"/api/admin/technologies"
     );
     setTechnologies(responseSec.data);
     return response;
@@ -38,10 +38,10 @@ function Home({ apiData }) {
   const deleteTechnology = async (id) => {
     // console.log(id)
     const response = await axios.delete(
-      "http://localhost:3000/api/admin/technologies",{data:{id}}
+      process.env.URL+"/api/admin/technologies",{data:{id}}
     );
     const responseSec = await axios.get(
-      "http://localhost:3000/api/admin/technologies"
+      process.env.URL+"/api/admin/technologies"
     );
     setTechnologies(responseSec.data);
     return response;
@@ -49,7 +49,7 @@ function Home({ apiData }) {
 
   const saveDescription = async () => {
     const response = await axios.post(
-      "http://localhost:3000/api/admin/setting",
+      process.env.URL+"/api/admin/setting",
       {
         description,
       }

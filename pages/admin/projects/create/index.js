@@ -33,7 +33,7 @@ function Home() {
       headers: { "content-type": "multipart/form-data" },
     };
     const response = await axios.post(
-      "http://localhost:3000/api/admin/upload",
+      process.env.URL+"/api/admin/upload",
       formData,
       config
     );
@@ -53,7 +53,7 @@ function Home() {
   };
 
   const sendFormData = async () => {
-    const response = await axios.post("http://localhost:3000/api/admin/projects/", {
+    const response = await axios.post(process.env.URL+"/api/admin/projects/", {
       title,
       tag,
       description,

@@ -28,7 +28,7 @@ export default function ContactMe({ description, socials }) {
     const date = `${current.getDate()}/${
       current.getMonth() + 1
     }/${current.getFullYear()}`;
-    const response = await axios.post("http://localhost:3000/api/messages", {
+    const response = await axios.post(process.env.URL+"/api/messages", {
       name,
       email,
       phone,

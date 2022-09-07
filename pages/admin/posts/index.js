@@ -19,7 +19,7 @@ function Home({ apiData }) {
 
   const fetchProjectsAgain = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/api/posts");
+      const res = await axios.get(process.env.URL+"/api/posts");
       console.log(res);
       setPosts(res.data);
     } catch (error) {
@@ -28,7 +28,7 @@ function Home({ apiData }) {
   };
   const deletePostReq = async (id) => {
     const response = await axios.get(
-      "http://localhost:3000/api/admin/posts/" + id
+      process.env.URL+"/api/admin/posts/" + id
     );
     fetchProjectsAgain();
     return response;
