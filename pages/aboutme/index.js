@@ -1,7 +1,7 @@
 
 import Head from "next/head";
 import Header from "../../components/Header/Header";
-import AboutMe from '../../components/AboutMe/AboutMe'
+import AboutMe from '../../components/AboutMe/Aboutme'
 import axios from "axios";
 
 
