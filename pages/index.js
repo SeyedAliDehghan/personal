@@ -13,7 +13,7 @@ function Home( {apiData} ) {
   const router = useRouter();
   // console.log("session: ", session);
   // console.log("main: ", apiData.setting.technologies);
-
+  
   return (
     <>
       <Head>
