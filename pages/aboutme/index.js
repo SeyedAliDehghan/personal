@@ -1,7 +1,7 @@
 
 import Head from "next/head";
 import Header from "../../components/Header/Header";
-import Aboutme from '../../components/Aboutme/Aboutme'
+import AboutMe from '../../components/AboutMe/AboutMe'
 import axios from "axios";
 
 
@@ -15,7 +15,7 @@ function Home( {apiData} ) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header/>
-      <Aboutme technologies={apiData}/>
+      <AboutMe technologies={apiData}/>
     </>
   );
 }

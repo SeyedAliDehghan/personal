@@ -3,7 +3,7 @@ import Hero from "../components/Hero/Hero";
 import Header from "../components/Header/Header";
 import Projects from '../components/Projects/Projects'
 import ContactMe from "../components/ContactMe/ContactMe";
-import Aboutme from "../components/Aboutme/Aboutme";
+import AboutMe from "../components/AboutMe/AboutMe";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import axios from "axios";
@@ -23,7 +23,7 @@ function Home( {apiData} ) {
       </Head>
       <Header/>
       <Hero description={apiData.setting.description} socials={apiData.social}/>
-      <Aboutme  technologies={apiData.setting.technologies}/>
+      <AboutMe  technologies={apiData.setting.technologies}/>
       <Projects projects={apiData.projects}/>
       <Posts posts={apiData.posts}/>
       <ContactMe/>

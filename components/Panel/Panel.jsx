@@ -4,7 +4,7 @@ import Parallax from "parallax-js";
 import React, { useRef, useEffect } from "react";
 import Socialmedias from "../Socialmedias/Socialmedias";
 import { useSession } from "next-auth/react";
-import List from "./list/list";
+import List from "./List/List";
 export default function Panel({ children,activeItem}) {
   const { data: session } = useSession();
 // console.log(activeItem)
