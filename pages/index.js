@@ -3,7 +3,7 @@ import Hero from "../components/Hero/Hero";
 import Header from "../components/Header/Header";
 import Projects from '../components/Projects/Projects'
 import ContactMe from "../components/ContactMe/ContactMe";
-import AboutMe from "../components/AboutMe/AboutMe";
+import AboutMe from "../components/AboutMe/Aboutme";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import axios from "axios";
