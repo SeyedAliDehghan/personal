@@ -9,7 +9,6 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import Posts from '../components/Posts/Posts'
 function Home( {apiData} ) {
-  // console.log(apiData)
   const { data: session } = useSession();
   const router = useRouter();
   // console.log("session: ", session);
