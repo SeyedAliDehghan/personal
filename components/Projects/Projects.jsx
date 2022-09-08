@@ -12,7 +12,7 @@ export default function Projects({ projects }) {
   const [project, setProject] = useState(projects);
   const router = useRouter();
 
-  // console.log(router.pathname);
+  // console.log(projects);
 
   // const likeHandler=async (projectId)=>{
   //   try{
@@ -56,17 +56,12 @@ export default function Projects({ projects }) {
               className="p-4 w-full sm:w-1/2 lg:w-1/3 relative  rounded-lg"
               key={project._id}
             >
-              {project.tag === "mini" && (
-                <div className="ribbon ribbon-top-left z-20">
-                  <span>{project.tag}</span>
-                </div>
-                // <div className="absolute z-30 top-7 px-7 py-1 bg-primaryColor text-white rounded-r-md labelShaddow font-bold">Mini</div>
-              )}
               {/* h-full */}
               <div className=" border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
                 <div className="projectImageCcontainer">
                   <Image
-                    src="/img/mock.jpg"
+                    // src="/img/mock.jpg"
+                    src={"/uploads/"+project.img}
                     alt={project.title}
                     layout="fill"
                     className="projectImage"
@@ -74,10 +69,13 @@ export default function Projects({ projects }) {
                 </div>
               </div>
               <div className="px-4 relative  -mt-16">
-                <div className="bg-white rounded-lg px-4 py-3 shadow-lg">
+                <div className="bg-white rounded-lg px-4 py-3 shadow-lg d-flex space-x-3">
                   <span className="bg-orange-200 text-orange-900 font-medium rounded-full px-2 inline-block uppercase tracking-wide text-xs">
                     {project.publicDate}
                   </span>
+                  {project.tag==="mini" && <span className="bg-orange-200 text-orange-900 font-medium rounded-full px-2 inline-block uppercase tracking-wide text-xs">
+                    Mini
+                  </span>}
                   <h2 className="mt-2 text-gray-900 font-semibold text-lg">
                     {project.title}
                   </h2>

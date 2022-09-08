@@ -60,7 +60,8 @@ export default function Posts({ posts }) {
             <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
               <div className="projectImageCcontainer">
                 <Image
-                  src="/img/mock.jpg"
+                  // src="/img/mock.jpg"
+                  src={"/uploads/"+project.img}
                   alt={project.title}
                   layout="fill"
                   className="projectImage"
