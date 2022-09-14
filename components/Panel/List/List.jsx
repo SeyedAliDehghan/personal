@@ -79,11 +79,11 @@ export default function List({ activeItem }) {
           </a>
         </Link>
       </li>
-      <li>
+      {/* <li>
       <Link href="/admin/credentials">
           <a
             className={`mb-1 px-2 py-2 rounded-lg flex items-center font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-200 ${
-              activeItem === "messages" ? " bg-gray-200 text-blue-600" : null
+              activeItem === "credentials" ? " bg-gray-200 text-blue-600" : null
             }`}
           >
             <span className="mr-4 opacity-50">
@@ -95,7 +95,7 @@ export default function List({ activeItem }) {
             <span>Credentials</span>
           </a>
         </Link>
-      </li>
+      </li> */}
     </ul>
   );
   

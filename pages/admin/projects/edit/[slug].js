@@ -33,7 +33,7 @@ function Home({apiData}) {
       headers: { "content-type": "multipart/form-data" },
     };
     const response = await axios.post(
-      process.env.URL+"/api/admin/upload",
+      process.env.NEXT_PUBLIC_URL+"/api/admin/upload",
       formData,
       config
     );
@@ -53,7 +53,7 @@ function Home({apiData}) {
   };
 
   const sendFormData = async () => {
-    const response = await axios.patch(process.env.URL+`/api/admin/projects/${apiData._id}`, {
+    const response = await axios.patch(process.env.NEXT_PUBLIC_URL+`/api/admin/projects/${apiData._id}`, {
       title,
       tag,
       description,
