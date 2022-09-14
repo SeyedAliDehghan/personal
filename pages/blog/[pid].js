@@ -72,7 +72,7 @@ export async function getServerSideProps(context) {
   // console.log("===================");
   // console.log(pid);
   try {
-    const res = await axios.get(process.env.URL + "/api/posts/" + pid);
+    const res = await axios.get(process.NEXT_PUBLIC_URL + "/api/posts/" + pid);
     return {
       props: {
         apiData: res.data,

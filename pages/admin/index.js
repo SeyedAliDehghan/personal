@@ -148,7 +148,7 @@ function Home({ apiData }) {
 
 export async function getServerSideProps() {
   try {
-    const res = await axios.get(process.env.URL + "/api/admin/setting");
+    const res = await axios.get(process.NEXT_PUBLIC_URL + "/api/admin/setting");
     return {
       props: {
         apiData: res.data,

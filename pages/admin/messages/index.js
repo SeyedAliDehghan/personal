@@ -91,7 +91,7 @@ function Home({ apiData }) {
 
 export async function getServerSideProps() {
   try {
-    const res = await axios.get(process.env.URL + "/api/messages");
+    const res = await axios.get(process.NEXT_PUBLIC_URL + "/api/messages");
     return {
       props: {
         apiData: res.data,

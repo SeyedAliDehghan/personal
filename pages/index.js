@@ -37,7 +37,7 @@ export async function getServerSideProps() {
   // } catch (error) {
   //   console.log(error)
   // }
-  const res = await axios.get(process.env.URL+"/api")
+  const res = await axios.get(process.NEXT_PUBLIC_URL+"/api")
   // console.log(res.data)
     return {
       props: {
