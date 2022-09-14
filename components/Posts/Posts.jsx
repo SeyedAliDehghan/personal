@@ -40,7 +40,7 @@ export default function Posts({ posts }) {
           </a>
         </Link>
       )}
-      {router.pathname.includes("/posts") && (
+      {router.pathname.includes("/blog") && (
         <Link href="/blog/">
           <a>
               <h1 className="text-4xl font-bold text-center md:text-left mb-5">
@@ -100,7 +100,7 @@ export default function Posts({ posts }) {
         ))}
       </div>
       )}
-      {post.length===0 && (<p>No project published yet</p>)}
+      {post.length===0 && (<p>No Post published yet</p>)}
     </div>
   );
 }
