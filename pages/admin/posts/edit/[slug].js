@@ -128,7 +128,7 @@ export async function getServerSideProps(context) {
     // console.log("===================");
     // console.log(pid);
     try {
-      const res = await axios.get(process.URL + "/api/posts/" + slug);
+      const res = await axios.get(process.env.URL + "/api/posts/" + slug);
       console.log(res.data)
       return {
         props: {

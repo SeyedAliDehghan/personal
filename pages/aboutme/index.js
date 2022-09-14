@@ -22,7 +22,7 @@ function Home( {apiData} ) {
 
 export async function getServerSideProps() {
   try {
-    const res = await axios.get(process.URL+"/api/technologies")
+    const res = await axios.get(process.env.URL+"/api/technologies")
     return {
       props: {
         apiData:res.data

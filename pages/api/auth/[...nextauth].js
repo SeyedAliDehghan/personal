@@ -15,7 +15,7 @@ export default NextAuth({
                 // ? Database Look up
                 // console.log(credentials)
                 try{
-                    const response=await axios.post(process.NEXT_PUBLIC_URL+'/api/admin/login',{email:credentials.username,password:credentials.password})
+                    const response=await axios.post(process.env.URL+'/api/admin/login',{email:credentials.username,password:credentials.password})
                     if(response){
                         return response.data.admin
                     }
