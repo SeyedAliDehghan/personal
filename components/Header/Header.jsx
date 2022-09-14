@@ -32,12 +32,22 @@ export default function Header() {
         <div className="flex items-center justify-between">
           {/* logo */}
           <div className="pt-2">
-            <Image
+            <Link href="/">
+              <a>
+                <Image
+                  src={logo}
+                  alt="Seyed ali dehghan logo"
+                  width={50}
+                  height={35}
+                />
+              </a>
+            </Link>
+            {/* <Image
               src={logo}
               alt="Seyed ali dehghan logo"
               width={50}
               height={35}
-            />
+            /> */}
           </div>
           {/* menu items */}
           <div className="hidden md:flex space-x-6">
@@ -78,9 +88,7 @@ export default function Header() {
           </button>
 
           <Link href="/contactme">
-            <a
-              className="hidden md:flex p-3 px-6 pt-2 text-white bg-primaryColor rounded-full self-baseline hover:shadow-lg hover:shadow-primaryColor ease-in-out duration-500 font-primary"
-            >
+            <a className="hidden md:flex p-3 px-6 pt-2 text-white bg-primaryColor rounded-full self-baseline hover:shadow-lg hover:shadow-primaryColor ease-in-out duration-500 font-primary">
               Contact me
             </a>
           </Link>
