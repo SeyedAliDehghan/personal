@@ -11,6 +11,7 @@ import Prism from "prismjs";
 import React, { useEffect } from "react";
 
 function Home({ apiData }) {
+
   // console.log(apiData);
   useEffect(() => {
     Prism.highlightAll();

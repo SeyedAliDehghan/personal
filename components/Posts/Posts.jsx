@@ -12,7 +12,7 @@ export default function Posts({ posts }) {
   const [post, setPost] = useState(posts);
   const router = useRouter();
 
-  // console.log(router.pathname);
+  console.log(router.pathname);
 
   // const likeHandler=async (projectId)=>{
   //   try{
@@ -25,7 +25,7 @@ export default function Posts({ posts }) {
 
   return (
     <div className="container flex flex-col px-4 mx-auto mt-10 space-y-12 md:space-y-0">
-      {router.pathname===("/") && (
+      {router.pathname === "/" && (
         <Link href="/blog/">
           <a>
             <div className="flex justify-between">
@@ -40,67 +40,68 @@ export default function Posts({ posts }) {
           </a>
         </Link>
       )}
-      {router.pathname.includes("/blog") && (
-        <Link href="/blog/">
-          <a>
-              <h1 className="text-4xl font-bold text-center md:text-left mb-5">
-                Blog
-              </h1>
-          </a>
-        </Link>
-      )}
-      { post.length!==0 && (
+      {router.pathname.includes("/blog") && 
+        <h1 className="text-4xl font-bold text-center md:text-left mb-5">
+          Blog
+        </h1>
+      }
+      {post.length !== 0 && (
         <div className="flex flex-wrap">
-        {post.map((project) => (
-          <div className="p-4 w-full sm:w-1/2 lg:w-1/3 relative" key={project._id}>
-            {project.tag==="mini" && (
-              <div className="ribbon ribbon-top-left z-20"><span>{project.tag}</span></div>
-              // <div className="absolute z-30 top-7 px-7 py-1 bg-primaryColor text-white rounded-r-md labelShaddow font-bold">Mini</div>
-            )}
-            <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
-              <div className="projectImageCcontainer">
-                <Image
-                  // src="/img/mock.jpg"
-                  src={"/uploads/"+project.img}
-                  alt={project.title}
-                  layout="fill"
-                  className="projectImage"
-                />
-              </div>
-              <div className="p-6 transition duration-300 ease-in">
-                <div className="text-base font-medium text-primaryColor mb-1">
-                  {project.publicDate}
+          {post.map((project) => (
+            <div
+              className="p-4 w-full sm:w-1/2 lg:w-1/3 relative"
+              key={project._id}
+            >
+              {project.tag === "mini" && (
+                <div className="ribbon ribbon-top-left z-20">
+                  <span>{project.tag}</span>
                 </div>
-                <div className="text-2xl font-semibold mb-3">
-                  {project.title}
+                // <div className="absolute z-30 top-7 px-7 py-1 bg-primaryColor text-white rounded-r-md labelShaddow font-bold">Mini</div>
+              )}
+              <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
+                <div className="projectImageCcontainer">
+                  <Image
+                    // src="/img/mock.jpg"
+                    src={"/uploads/" + project.img}
+                    alt={project.title}
+                    layout="fill"
+                    className="projectImage"
+                  />
                 </div>
-                <div className="leading-relaxed mb-3">
-                  {project.description}
-                </div>
-                <div className="flex items-center flex-wrap ">
-                  <Link href={"/blog/" + project.slug}>
-                    <a className="text-primaryColor inline-flex items-center md:mb-2 lg:mb-0">
-                      Read More
-                    </a>
-                  </Link>
-                  <div className="text-gray-400 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
-                    {/* <FontAwesomeIcon icon={faGithub} style={{width:"15px",marginRight:"5px"}}/> */}
+                <div className="p-6 transition duration-300 ease-in">
+                  <div className="text-base font-medium text-primaryColor mb-1">
+                    {project.publicDate}
                   </div>
-                  <div className="text-gray-400 inline-flex items-center leading-none text-sm">
-                    <FontAwesomeIcon
-                      icon={faMessage}
-                      style={{ width: "15px", marginRight: "5px" }}
-                    />
-                    <span>{project.commentCount}</span>
+                  <div className="text-2xl font-semibold mb-3">
+                    {project.title}
+                  </div>
+                  <div className="leading-relaxed mb-3">
+                    {project.description}
+                  </div>
+                  <div className="flex items-center flex-wrap ">
+                    <Link href={"/blog/" + project.slug}>
+                      <a className="text-primaryColor inline-flex items-center md:mb-2 lg:mb-0">
+                        Read More
+                      </a>
+                    </Link>
+                    <div className="text-gray-400 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
+                      {/* <FontAwesomeIcon icon={faGithub} style={{width:"15px",marginRight:"5px"}}/> */}
+                    </div>
+                    <div className="text-gray-400 inline-flex items-center leading-none text-sm">
+                      <FontAwesomeIcon
+                        icon={faMessage}
+                        style={{ width: "15px", marginRight: "5px" }}
+                      />
+                      <span>{project.commentCount}</span>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
       )}
-      {post.length===0 && (<p>No Post published yet</p>)}
+      {post.length === 0 && <p>No Post published yet</p>}
     </div>
   );
 }

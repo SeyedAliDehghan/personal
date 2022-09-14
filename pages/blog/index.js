@@ -1,16 +1,18 @@
 
 import Head from "next/head";
 import Header from "../../components/Header/Header";
-import Projects from '../../components/Projects/Projects'
+import Posts from '../../components/Posts/Posts'
 import { useSession } from "next-auth/react";
 import { signOut } from "next-auth/react"
 import { useRouter } from "next/router";
 import axios from "axios";
 
 function Home( {apiData} ) {
+  
   // console.log(apiData)
   const { data: session } = useSession();
   const router = useRouter();
+  // console.log(router.pathname.includes("/blog"));
   // console.log("session: ", session);
 
   return (
@@ -21,7 +23,7 @@ function Home( {apiData} ) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header/>
-      <Projects projects={apiData}/>
+      <Posts posts={apiData}/>
     </>
   );
 }

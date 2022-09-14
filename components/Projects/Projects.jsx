@@ -40,15 +40,11 @@ export default function Projects({ projects }) {
           </a>
         </Link>
       )}
-      {router.pathname.includes("/projects") && (
-        <Link href="/projects/">
-          <a>
-            <h1 className="text-4xl font-bold text-center md:text-left mb-5">
-              Projects
-            </h1>
-          </a>
-        </Link>
-      )}
+      {router.pathname.includes("/projects") && 
+        <h1 className="text-4xl font-bold text-center md:text-left mb-5">
+          Projects
+        </h1>
+      }
       {project.length !== 0 && (
         <div className="flex flex-wrap">
           {project.map((project) => (
@@ -61,7 +57,7 @@ export default function Projects({ projects }) {
                 <div className="projectImageCcontainer">
                   <Image
                     // src="/img/mock.jpg"
-                    src={"/uploads/"+project.img}
+                    src={"/uploads/" + project.img}
                     alt={project.title}
                     layout="fill"
                     className="projectImage"
@@ -73,9 +69,11 @@ export default function Projects({ projects }) {
                   <span className="bg-orange-200 text-orange-900 font-medium rounded-full px-2 inline-block uppercase tracking-wide text-xs">
                     {project.publicDate}
                   </span>
-                  {project.tag==="mini" && <span className="bg-orange-200 text-orange-900 font-medium rounded-full px-2 inline-block uppercase tracking-wide text-xs">
-                    Mini
-                  </span>}
+                  {project.tag === "mini" && (
+                    <span className="bg-orange-200 text-orange-900 font-medium rounded-full px-2 inline-block uppercase tracking-wide text-xs">
+                      Mini
+                    </span>
+                  )}
                   <h2 className="mt-2 text-gray-900 font-semibold text-lg">
                     {project.title}
                   </h2>
@@ -84,9 +82,7 @@ export default function Projects({ projects }) {
                   </div>
                   <div className="mt-3">
                     <Link href={"/projects/" + project.slug}>
-                      <a className="text-primaryColor rounded-lg">
-                        Read More
-                      </a>
+                      <a className="text-primaryColor rounded-lg">Read More</a>
                     </Link>
                   </div>
                 </div>
